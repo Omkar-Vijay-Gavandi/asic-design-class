@@ -4,7 +4,7 @@
 
 ![Leafpad](https://github.com/user-attachments/assets/86e220c4-b8d2-4ce3-94fa-ff5ad14fa29a)
 ## * Step 2:- Open a new file in the leafpad editor and write the desired c program and save it
-## * Step 3:- After saving the file compile the file using the GCC Compiler
+## * Step 3:- After saving the file compile it using the GCC Compiler
 ## * Step 4:- Print the output of the code O0.
 <br>
 
