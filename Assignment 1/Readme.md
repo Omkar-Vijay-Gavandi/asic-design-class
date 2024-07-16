@@ -1,4 +1,4 @@
-# To make a C Program and compile it using the GCC compiler
+# Write a C Program and compile it using the GCC compiler to get Output O0 
 
 ## * Step 1:- Download leafpad editor in the terminal by using the sudo apt command.
 
