@@ -38,7 +38,7 @@ reg 0 sp
 ### The following are the initial contents of the stack pointer
 
 ![stack pointer contents](https://github.com/user-attachments/assets/15734fb6-4390-4a8a-8c46-3d208c517225)
-
+### In the assembly code we can see that the value of the stack pointer is being reduced by 10 in hexadecimal we is equivalent to being reduced by 16 in decimal notation
 ### After running the first line of the code the contents of the stack pointer get modified and we get the follwoing result
 
 ![modified sp](https://github.com/user-attachments/assets/03f6cb0c-2d06-42e1-a38c-36c63a921e6b)
