@@ -16,8 +16,10 @@ spike pk sum1ton.o
 ### The compiled code using SPIKE command
 ![result from gcc compiler](https://github.com/user-attachments/assets/4184bd6a-8bc4-40ba-bc97-4c040b7c960a)
 
-### The assembly code of O1 and Ofast for reference
+### The assembly code of O1
 ![assembly code](https://github.com/user-attachments/assets/5dc5673f-202b-4896-875c-78242dfb6dac)
+
+### The assembly code of Ofast
 ![assembly code_ ofast](https://github.com/user-attachments/assets/c743439b-7dea-4e59-86fa-76a79cd51bd5)
 
 
