@@ -44,9 +44,6 @@ until pc 0 100bo
 ```bash
 reg 0 sp
 ```
-```bash
-reg 0 a0
-```
 ### The following are the initial contents of the stack pointer
 
 ![stack pointer contents](https://github.com/user-attachments/assets/15734fb6-4390-4a8a-8c46-3d208c517225)
@@ -57,6 +54,10 @@ reg 0 a0
 ![modified sp](https://github.com/user-attachments/assets/03f6cb0c-2d06-42e1-a38c-36c63a921e6b)
 
 ### Similarly for the register a0 we observe the following initial and final contents
+
+```bash
+reg 0 a0
+```
 
 ![a0 initial contents](https://github.com/user-attachments/assets/2156c1c6-da00-4a39-8b49-b66eab93d527)
 
