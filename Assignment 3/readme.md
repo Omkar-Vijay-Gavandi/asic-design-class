@@ -14,10 +14,10 @@ To find the output of the C program on the RISC V Compiler using the Spike comma
 spike pk sum1ton.o
 ```
 ### The compiled code using SPIKE command
-![The compiled code on gcc compiler](https://github.com/user-attachments/assets/d6f0c595-eb7e-4f02-b1a1-75c55a81f275)
+![result from gcc compiler](https://github.com/user-attachments/assets/4184bd6a-8bc4-40ba-bc97-4c040b7c960a)
 
 ### The assembly code of O1 and Ofast for reference
-![The assembly code for the above c code](https://github.com/user-attachments/assets/0cfcd558-5c24-442e-9e62-6980597b05ad)
+![assembly code](https://github.com/user-attachments/assets/5dc5673f-202b-4896-875c-78242dfb6dac)
 ![assembly code_ ofast](https://github.com/user-attachments/assets/c743439b-7dea-4e59-86fa-76a79cd51bd5)
 
 
