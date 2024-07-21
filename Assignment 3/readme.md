@@ -39,7 +39,7 @@ until pc 0 10184
 until pc 0 100bo
 ```
 
-### The first instruction involves the stack pointer. Therefore in order to check the initial and final contents of the stack pointer we use the follwoing code
+### The first instruction involves the stack pointer. Therefore in order to check the initial and final contents of the stack pointer we use the follwoing code. [O1]
 
 ```bash
 reg 0 sp
@@ -53,7 +53,7 @@ reg 0 sp
 
 ![modified sp](https://github.com/user-attachments/assets/03f6cb0c-2d06-42e1-a38c-36c63a921e6b)
 
-### Similarly for the register a0 we observe the following initial and final contents
+### Similarly for the register a0 we observe the following initial and final contents [ O-fast]
 
 ```bash
 reg 0 a0
