@@ -63,7 +63,7 @@ return 0;
 THe output of the code is 1653
 ```
 
-## Screenshots of the compiled result ##
+## Screenshots of the compiled result 
 
 ![riscv gcc 01](https://github.com/user-attachments/assets/8d413890-5c3a-4883-a5d5-2a61c52349b4)
 
@@ -84,7 +84,7 @@ THe output of the code is 1653
 <br>
   
 ## Assignment 3
-### Task :- 
+### Task 1:- 
 To find the output of the C program on the RISC V Compiler using the Spike command and debug the code
 
 ### In assignment 1 we have compiled and found the output of the c code using the GCC compiler and have found the sum of the n numbers. In assignment 2 we have looked at the assembly code for the same using the objdump command on the RISC V compiler. In assignment 3 we are going to have find the result of the n numbers on the RISCV compiler using the SPIKE command
@@ -149,6 +149,7 @@ reg 0 a0
 <summary> Assignment 4 </summary>
 <br>
 
+## Task 1:-
 RISC-V, a popular open-source instruction set architecture (ISA), employs six basic instruction formats to encode various operations. These formats are designed for efficiency and flexibility. They are as follows:-
 
 ## Overview of the RISK V architecture:-
@@ -366,5 +367,27 @@ RISC-V, a popular open-source instruction set architecture (ISA), employs six ba
       - rs2: 1 (r1)
       - rd: 5 (r5)
       - <code style="color : name_color"> Binary encoding: 0000000 00001 00001 001 00101 0110011 </code>
+
+
+## The final table for the instructions is as follows:-
+
+| Assembly Instruction | Instruction format         |  Hexadecimal equivalent
+|----------------------|----------------------------|----------------------------
+| ADD r10, r11, r12    | R                          | <code style="color : name_color"> 0x00C58033 </code>
+| SUB r12, r10, r11    | R                          | <code style="color : name_color"> 0x40B50633 </code>
+| AND r11, r10, r12    | R                          | <code style="color : name_color"> 0x00C575B3 </code>
+| OR r8, r11, r5       | R                          | <code style="color : name_color"> 0x005B7833 </code>
+| XOR r8, r10, r4      | R                          | <code style="color : name_color"> 0x00454433 </code>
+| SLT r00, r1, r4      | R                          | <code style="color : name_color"> 0x0040A033 </code>
+| ADDI r02, r2, 5      | I                          | <code style="color : name_color"> 0x00510113 </code>
+| SW r2, r0, 4         | S                          | <code style="color : name_color"> 0x00204223 </code>
+| SRL r06, r01, r1     | R                          | <code style="color : name_color"> 0x0010D333 </code>
+| BNE r0, r0, 20       | B                          | <code style="color : name_color"> 0x00001463 </code>
+| BEQ r0, r0, 15       | B                          | <code style="color : name_color"> 0x00003863 </code>
+| LW r03, r01, 2       | I                          | <code style="color : name_color"> 0x0020A183 </code>
+| SLL r05, r01, r1     | R                          | <code style="color : name_color"> 0x001092B3 </code>
+
+
+### Task 2:-
 
 
