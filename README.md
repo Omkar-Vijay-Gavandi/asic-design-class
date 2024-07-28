@@ -151,6 +151,10 @@ reg 0 a0
 
 RISC-V, a popular open-source instruction set architecture (ISA), employs six basic instruction formats to encode various operations. These formats are designed for efficiency and flexibility. They are as follows:-
 
+## Overview of the RISK V architecture:-
+![Risc v architecture](https://github.com/user-attachments/assets/0886862c-554e-44b2-9cd3-80d553964f96)
+
+
 - ###  R-Type (Register)
   Purpose: Used for arithmetic and logical operations.
   - Format:
