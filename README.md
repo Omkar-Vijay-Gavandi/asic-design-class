@@ -222,170 +222,24 @@ RISC-V, a popular open-source instruction set architecture (ISA), employs six ba
     - immediate[11]: 1 bit
     - immediate[19:12]: 8 bits
    
-- ### Instruction Breakdown for the code given:
-    - ### ADD r10, r11, r12
-    
-      - Type: R-Type
-      - Opcode: 0110011
-      - funct3: 000
-      - funct7: 0000000
-      - rs1: 11 (r11)
-      - rs2: 12 (r12)
-      - rd: 10 (r10)
-      - <code style="color : name_color"> Binary encoding: 0000000 01100 01011 000 01010 0110011</code>
-      
-    - ### SUB r12, r10, r11
-
-      - Type: R-Type
-      - Opcode: 0110011
-      - funct3: 000
-      - funct7: 0100000
-      - rs1: 10 (r10)
-      - rs2: 11 (r11)
-      - rd: 12 (r12)
-      - <code style="color : name_color"> Binary encoding: 0100000 01011 01010 000 01100 0110011 </code>
-
-    - ### AND r11, r10, r12
-    
-      - Type: R-Type
-      - Opcode: 0110011
-      - funct3: 111
-      - funct7: 0000000
-      - rs1: 10 (r10)
-      - rs2: 12 (r12)
-      - rd: 11 (r11)
-      - <code style="color : name_color"> Binary encoding: 0000000 01100 01010 111 01011 0110011 </code>
- 
-    - ### OR r8, r11, r5
-    
-      - Type: R-Type
-      - Opcode: 0110011
-      - funct3: 110
-      - funct7: 0000000
-      - rs1: 11 (r11)
-      - rs2: 5 (r5)
-      - rd: 8 (r8)
-      - <code style="color : name_color">Binary encoding: 0000000 00101 01011 110 01000 0110011 </code>
-
-    - ### XOR r8, r10, r4
-    
-      - Type: R-Type
-      - Opcode: 0110011
-      - funct3: 100
-      - funct7: 0000000
-      - rs1: 10 (r10)
-      - rs2: 4 (r4)
-      - rd: 8 (r8) 
-      - <code style="color : name_color"> Binary encoding: 0000000 00100 01010 100 01000 0110011 </code>
-
-    - ### SLT r0, r1, r4
-    
-      - Type: R-Type
-      - Opcode: 0110011
-      - funct3: 010
-      - funct7: 0000000
-      - rs1: 1 (r1)
-      - rs2: 4 (r4)
-      - rd: 0 (r0)
-      - <code style="color : name_color"> Binary encoding: 0000000 00100 00001 010 00000 0110011 </code>
-
-    - ### ADDI r2, r2, 5
-    
-      - Type: I-Type
-      - Opcode: 0010011
-      - funct3: 000
-      - imm[11:0]: 000000000101
-      - rs1: 2 (r2)
-      - rd: 2 (r2)
-      - <code style="color : name_color"> Binary encoding: 000000000101 00010 000 00010 0010011 </code>
-    
-    - ### SW r2, r0, 4
-    
-      - Type: S-Type
-      - Opcode: 0100011
-      - funct3: 010
-      - imm[11:5]: 0000000
-      - rs1: 0 (r0)
-      - rs2: 2 (r2)
-      - imm[4:0]: 00100
-      - <code style="color : name_color"> Binary encoding: 0000000 00010 00000 010 00100 0100011 </code>
-
-    - ### SRL r6, r1, r1
-    
-      - Type: R-Type
-      - Opcode: 0110011
-      - funct3: 101
-      - funct7: 0000000
-      - rs1: 1 (r1)
-      - rs2: 1 (r1)
-      - rd: 6 (r6)
-      - <code style="color : name_color"> Binary encoding: 0000000 00001 00001 101 00110 0110011 </code>
-
-    - ### BNE r0, r0, 20
-    
-      - Type: B-Type
-      - Opcode: 1100011
-      - funct3: 001
-      - imm[12]: 0
-      - imm[10:5]: 000010
-      - rs1: 0 (r0)
-      - rs2: 0 (r0)
-      - imm[4:1]: 0100
-      - imm[11]: 0
-      - <code style="color : name_color"> Binary encoding: 000000 00000 00000 001 0100 00000 1100011 </code>
-
-    - ### BEQ r0, r0, 15
-    
-      - Type: B-Type
-      - Opcode: 1100011
-      - funct3: 000
-      - imm[12]: 0
-      - imm[10:5]: 000001
-      - rs1: 0 (r0)
-      - rs2: 0 (r0)
-      - imm[4:1]: 1110
-      - imm[11]: 0
-      - <code style="color : name_color"> Binary encoding: 000000 00000 00000 000 1110 00000 1100011 </code>
-
-    - ### LW r3, r1, 2
-    
-      - Type: I-Type
-      - Opcode: 0000011
-      - funct3: 010
-      - imm[11:0]: 000000000010
-      - rs1: 1 (r1)
-      - rd: 3 (r3)
-      - <code style="color : name_color"> Binary encoding: 000000000010 00001 010 00011 0000011 </code>
-
-    - ### SLL r5, r1, r1
-    
-      - Type: R-Type
-      - Opcode: 0110011
-      - funct3: 001
-      - funct7: 0000000
-      - rs1: 1 (r1)
-      - rs2: 1 (r1)
-      - rd: 5 (r5)
-      - <code style="color : name_color"> Binary encoding: 0000000 00001 00001 001 00101 0110011 </code>
-
 
 ## The final table for the instructions is as follows:-
 
-| Assembly Instruction | Instruction format         |  Hexadecimal equivalent                             | Binary equivalent
-|----------------------|----------------------------|-----------------------------------------------------|-------------------
-| ADD r10, r11, r12    | R                          | <code style="color : name_color"> 0x00C58533 </code>| 0000 0000 1100 0101 1000 0101 0011 0011
-| SUB r12, r10, r11    | R                          | <code style="color : name_color"> 0x40B50633 </code>| 0100 0000 1011 0101 0000 0110 0011 0011
-| AND r11, r10, r12    | R                          | <code style="color : name_color"> 0x00C575B3 </code>| 0000 0000 1100 0101 0111 0101 1011 0011
-| OR r8, r11, r5       | R                          | <code style="color : name_color"> 0x0055E433 </code>| 0000 0000 0101 0101 1110 0100 0011 0011
-| XOR r8, r10, r4      | R                          | <code style="color : name_color"> 0x00454433 </code>| 0000 0000 0100 0101 0100 0100 0011 0011
-| SLT r00, r1, r4      | R                          | <code style="color : name_color"> 0x0040A033 </code>| 0000 0000 0100 0000 1010 0000 0011 0011
-| ADDI r02, r2, 5      | I                          | <code style="color : name_color"> 0x00510113 </code>| 0000 0000 0101 0001 0000 0001 0001 0011
-| SW r2, r0, 4         | S                          | <code style="color : name_color"> 0x00202123 </code>| 0000 0000 0010 0000 0010 0001 0010 0011
-| SRL r06, r01, r1     | R                          | <code style="color : name_color"> 0x0010D333 </code>| 0000 0000 0001 0000 1101 0011 0011 0011
-| BNE r0, r0, 20       | B                          | <code style="color : name_color"> 0x00001063 </code>| 0000 0000 0000 0000 0001 0000 0110 0011
-| BEQ r0, r0, 15       | B                          | <code style="color : name_color"> 0x00000063 </code>| 0000 0000 0000 0000 0000 0000 0110 0011
-| LW r03, r01, 2       | I                          | <code style="color : name_color"> 0x0020A183 </code>| 0000 0000 0010 0000 1010 0001 1000 0011
-| SLL r05, r01, r1     | R                          | <code style="color : name_color"> 0x001092B3 </code>| 0000 0000 0001 0000 1001 0010 1011 0011
+| Assembly Instruction | Instruction format         |  Hexadecimal equivalent                             | Binary equivalent                      |
+|----------------------|----------------------------|-----------------------------------------------------|----------------------------------------|
+| ADD r10, r11, r12    | R                          | <code style="color : name_color"> 0x00C58533 </code>| 0000 0000 1100 0101 1000 0101 0011 0011|
+| SUB r12, r10, r11    | R                          | <code style="color : name_color"> 0x40B50633 </code>| 0100 0000 1011 0101 0000 0110 0011 0011|
+| AND r11, r10, r12    | R                          | <code style="color : name_color"> 0x00C575B3 </code>| 0000 0000 1100 0101 0111 0101 1011 0011|
+| OR r8, r11, r5       | R                          | <code style="color : name_color"> 0x0055E433 </code>| 0000 0000 0101 0101 1110 0100 0011 0011|
+| XOR r8, r10, r4      | R                          | <code style="color : name_color"> 0x00454433 </code>| 0000 0000 0100 0101 0100 0100 0011 0011|
+| SLT r00, r1, r4      | R                          | <code style="color : name_color"> 0x0040A033 </code>| 0000 0000 0100 0000 1010 0000 0011 0011|
+| ADDI r02, r2, 5      | I                          | <code style="color : name_color"> 0x00510113 </code>| 0000 0000 0101 0001 0000 0001 0001 0011|
+| SW r2, r0, 4         | S                          | <code style="color : name_color"> 0x00202123 </code>| 0000 0000 0010 0000 0010 0001 0010 0011|
+| SRL r06, r01, r1     | R                          | <code style="color : name_color"> 0x0010D333 </code>| 0000 0000 0001 0000 1101 0011 0011 0011|
+| BNE r0, r0, 20       | B                          | <code style="color : name_color"> 0x00001063 </code>| 0000 0000 0000 0000 0001 0000 0110 0011|
+| BEQ r0, r0, 15       | B                          | <code style="color : name_color"> 0x00000063 </code>| 0000 0000 0000 0000 0000 0000 0110 0011|
+| LW r03, r01, 2       | I                          | <code style="color : name_color"> 0x0020A183 </code>| 0000 0000 0010 0000 1010 0001 1000 0011|
+| SLL r05, r01, r1     | R                          | <code style="color : name_color"> 0x001092B3 </code>| 0000 0000 0001 0000 1001 0010 1011 0011|
  
 
 ### Task 2:-
