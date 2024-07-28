@@ -244,6 +244,23 @@ RISC-V, a popular open-source instruction set architecture (ISA), employs six ba
 
 ## Task 2:-
 
+
+| Assembly Instruction | Instruction format         |  Hardcoded ISA | 
+|----------------------|----------------------------|----------------|
+| add r6,r1,r2         | R                          | 32'h02208300   |
+| sub r7,r1,r2         | R                          | 32'h02209380   |
+| and r8,r1,r3         | R                          | 32'h0230a400   |
+| or r9,r2,r5          | R                          | 32'h02513480   |
+| xor r10,r1,r4        | R                          | 32'h0240c500   |
+| slt r11,r2,r4        | R                          | 32'h02415580   |
+| addi r12,r4,5        | I                          | 32'h00520600   |
+| sw r3,r1,2           | S                          | 32'h00209181   |
+| lw r13,r1,2          | R                          | 32'h00208681   |
+| beq r0,r0,15         | B                          | 32'h00f00002   |
+| add r14,r2,r2        | B                          | 32'h00210700   |
+
+
+
 ### The waveforms for the original verilog code
 
 ``` Add r6,r1,r2 ```
