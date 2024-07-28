@@ -244,8 +244,9 @@ RISC-V, a popular open-source instruction set architecture (ISA), employs six ba
 
 ## Task 2:-
 
+### 
 
-| Assembly Instruction | Instruction format         |  Hardcoded ISA | 
+| Assembly Instruction | Instruction format         | Hardcoded ISA  | 
 |----------------------|----------------------------|----------------|
 | add r6,r1,r2         | R                          | 32'h02208300   |
 | sub r7,r1,r2         | R                          | 32'h02209380   |
