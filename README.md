@@ -149,7 +149,7 @@ reg 0 a0
 <summary> Assignment 4 </summary>
 <br>
 
-## Task 1:-
+# Task 1:-
 RISC-V, a popular open-source instruction set architecture (ISA), employs six basic instruction formats to encode various operations. These formats are designed for efficiency and flexibility. They are as follows:-
 
 ## Overview of the RISK V architecture:-
