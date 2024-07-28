@@ -5,15 +5,12 @@
   - GCC (GNU Compiler Collection)
   - RISC-V GNU Compiler Toolchain
   - Spike RISC-V Simulator
-  - Ubuntu OS
-  
- ## Assignment 1 
+  - Ubuntu OS 
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary> Assignment 1</summary>
 <br>
-This is how you dropdown.
-</details>
+
 
 ### Write a C Program and compile it using the GCC compiler to get Output O0 
 
@@ -32,7 +29,10 @@ This is how you dropdown.
 ![sum1ton](https://github.com/user-attachments/assets/d3fb1189-f3db-4bbf-9fe3-8bbacbcfca09)
 </details>
 
-## Assignment 2
+
+<details>
+<summary> Assignment 2</summary>
+<br>
 
 ### To compile and verify the c code on the riscv compiler and verifying the number of lines in the assembly language code manually
 
@@ -77,6 +77,12 @@ THe output of the code is 1653
 
 ![assembly code riscv gcc ofast](https://github.com/user-attachments/assets/9e6b5fe8-f404-4e4f-a537-656358699061)
 
+</details>
+
+<details>
+<summary> Assignment 3</summary>
+<br>
+  
 ## Assignment 3
 ### Task :- 
 To find the output of the C program on the RISC V Compiler using the Spike command and debug the code
@@ -136,3 +142,79 @@ reg 0 a0
 ![a0 initial contents](https://github.com/user-attachments/assets/2156c1c6-da00-4a39-8b49-b66eab93d527)
 
 ### Similarly we can do the same for all the other instructions in the code and find out the contents in the respective addressing locations and their updated values once we execute the lines in the debugger.
+
+</details>
+
+<details>
+<summary> Assignment 4 </summary>
+<br>
+
+RISC-V, a popular open-source instruction set architecture (ISA), employs six basic instruction formats to encode various operations. These formats are designed for efficiency and flexibility. They are as follows:-
+
+- ###  R-Type (Register)
+  Purpose: Used for arithmetic and logical operations.
+  - Format:
+    - opcode: 7 bits
+    - rd (destination register): 5 bits
+    - funct3: 3 bits
+    - rs1 (source register 1): 5 bits
+    - rs2 (source register 2): 5 bits
+    - funct7: 7 bits
+
+- ###  I-Type (Immediate)
+  Purpose: Used for immediate arithmetic operations, load instructions, and certain system instructions.
+
+  - Format:  
+    - opcode: 7 bits
+    - rd (destination register): 5 bits
+    - funct3: 3 bits
+    - rs1 (source register): 5 bits
+    - immediate: 12 bits
+
+- ### S-Type (Store)
+  Purpose: Used for store instructions.
+
+  - Format:  
+    - opcode: 7 bits
+    - immediate[11:5]: 7 bits
+    - funct3: 3 bits
+    - rs1 (source register 1): 5 bits
+    - rs2 (source register 2): 5 bits
+    - immediate[4:0]: 5 bits
+    
+- ### B-Type (Branch)
+  Purpose: Used for branch instructions.
+
+  - Format:
+  
+    - opcode: 7 bits
+    - immediate[12]: 1 bit
+    - immediate[10:5]: 6 bits
+    - funct3: 3 bits
+    - rs1 (source register 1): 5 bits
+    - rs2 (source register 2): 5 bits
+    - immediate[4:1]: 4 bits
+    - immediate[11]: 1 bit
+
+- ### U-Type (Upper Immediate)
+  Purpose: Used for instructions that need a large immediate value (e.g., LUI).
+
+  - Format:
+  
+    - opcode: 7 bits
+    - rd (destination register): 5 bits
+    - immediate: 20 bits
+
+- ### J-Type (Jump)
+  Purpose: Used for jump instructions (e.g., JAL).
+
+  - Format:
+  
+    - opcode: 7 bits
+    - rd (destination register): 5 bits
+    - immediate[20]: 1 bit
+    - immediate[10:1]: 10 bits
+    - immediate[11]: 1 bit
+    - immediate[19:12]: 8 bits
+
+
