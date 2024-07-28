@@ -256,9 +256,9 @@ RISC-V, a popular open-source instruction set architecture (ISA), employs six ba
 | slt r11,r2,r4        | R                          | 32'h02415580   |
 | addi r12,r4,5        | I                          | 32'h00520600   |
 | sw r3,r1,2           | S                          | 32'h00209181   |
-| lw r13,r1,2          | R                          | 32'h00208681   |
+| lw r13,r1,2          | I                          | 32'h00208681   |
 | beq r0,r0,15         | B                          | 32'h00f00002   |
-| add r14,r2,r2        | B                          | 32'h00210700   |
+| add r14,r2,r2        | R                          | 32'h00210700   |
 
 
 
