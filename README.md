@@ -242,6 +242,118 @@ RISC-V, a popular open-source instruction set architecture (ISA), employs six ba
 | SLL r05, r01, r1     | R                          | <code style="color : name_color"> 0x001092B3 </code>| 0000 0000 0001 0000 1001 0010 1011 0011|
  
 
-### Task 2:-
+## Task 2:-
+
+### The waveforms for the original verilog code
+
+``` Add r6,r1,r2 ```
+
+![image](https://github.com/user-attachments/assets/b1e4501e-bd3b-4aaf-9b62-2d5644666cd4)
+
+``` Sub r7,r1,r2 ```
+
+![image](https://github.com/user-attachments/assets/24c3f1f0-91f1-4bcd-96c5-f82de03b4362)
+
+``` And r8,r1,r3 ```
+
+![image](https://github.com/user-attachments/assets/510fbd69-a0a1-4730-9586-b8c12cb995ea)
+
+``` Or r9,r2,r5 ```
+
+![image](https://github.com/user-attachments/assets/d4684ab4-fc66-4811-817b-8431691f41bf)
+
+``` Xor r10,r1,r4 ```
+
+![image](https://github.com/user-attachments/assets/7f9a3c78-af51-417b-a031-5cd63b02a3a7)
+
+``` slt r11,r2,r4 ```
+
+![image](https://github.com/user-attachments/assets/e65c85b2-f9d8-4687-b9d2-23bc5044a3dd)
+
+``` addi r12,r4,5 ```
+
+![image](https://github.com/user-attachments/assets/ce8a622a-a6e3-4192-8858-e9185d35bd59)
+
+``` sw r3,r1,2 ```
+
+![image](https://github.com/user-attachments/assets/a9f28035-1d60-41b0-a418-2a5d7882d972)
+
+``` lw r13,r1,2 ```
+
+![image](https://github.com/user-attachments/assets/7afdd0e9-3d75-4125-9131-0d2146e8aeba)
+
+``` beq r0,r0,15  ```
+
+![image](https://github.com/user-attachments/assets/4f067a51-a211-4726-a457-0e567ca0406b)
+
+``` add r14,r2,r2 ```
+
+![Og_11](https://github.com/user-attachments/assets/3f3fce3a-581a-4b15-8a9b-0f880ffb8e52)
+
+
+### The waveforms according to the instructions assignmed to me
+
+
+```  ADD r10, r11, r12 ```
+
+![image](https://github.com/user-attachments/assets/e1587db3-9081-43e5-8f0f-7b909a7557a5)
+
+``` SUB r12, r10, r11 ```
+
+![image](https://github.com/user-attachments/assets/c16aa95a-c37f-47cd-8335-04c24a40cd54)
+
+``` AND r11, r10, r12 ```
+
+![image](https://github.com/user-attachments/assets/d32083c5-8b8f-4979-9d58-ba4a2f87932e)
+
+``` OR r8, r11, r5 ```
+
+![image](https://github.com/user-attachments/assets/0b9aa44e-8cef-47cb-a7b2-c92fa1a507c0)
+
+``` XOR r8, r10, r4 ```
+
+![image](https://github.com/user-attachments/assets/e9057d8e-4ff1-4d8d-bf51-5ec59b8af948)
+
+``` SLT r00, r1, r4 ```
+
+![image](https://github.com/user-attachments/assets/54242fff-2179-48f5-b91b-ed2e21e1a5e3)
+
+``` ADDI r02, r2, 5 ```
+
+![image](https://github.com/user-attachments/assets/168a6af1-d8c1-403e-8427-67811bc4fbca)
+
+``` SW r2, r0, 4 ```
+
+![My_code_8](https://github.com/user-attachments/assets/58363200-d22e-4f73-9039-480695a03adc)
+
+``` SRL r06, r01, r1 ```
+
+![image](https://github.com/user-attachments/assets/888422ca-e4bb-42bd-91af-094fca1d5394)
+
+``` BNE r0, r0, 20 ```
+
+![image](https://github.com/user-attachments/assets/a4efe01c-1dd0-46d3-9847-f7c19b51ae31)
+
+``` BEQ r0, r0, 15 ```
+
+![image](https://github.com/user-attachments/assets/131bd04f-e3db-4584-804d-31eab57f0496)
+
+``` LW r03, r01, 2 ```
+
+![image](https://github.com/user-attachments/assets/1966c656-6916-4486-b864-8731421cc0b0)
+
+``` SLL r05, r01, r1 ```
+
+![image](https://github.com/user-attachments/assets/55578f7c-275b-42e4-b7d4-b91c2de8f741)
+
+
+
+
+
+
+
+
+
+
 
 
