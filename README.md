@@ -6,10 +6,14 @@
   - RISC-V GNU Compiler Toolchain
   - Spike RISC-V Simulator
   - Ubuntu OS
-<details>
-<summmary> Assignment 1 </summmary>
-<br>
+  
+ ## Assignment 1 
 
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
 
 ### Write a C Program and compile it using the GCC compiler to get Output O0 
 
