@@ -242,7 +242,7 @@ RISC-V, a popular open-source instruction set architecture (ISA), employs six ba
 | SLL r05, r01, r1     | R                          | <code style="color : name_color"> 0x001092B3 </code>| 0000 0000 0001 0000 1001 0010 1011 0011|
  
 
-## Task 2:-
+# Task 2:-
 
 ### 
 
