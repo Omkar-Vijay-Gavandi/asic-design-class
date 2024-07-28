@@ -373,17 +373,17 @@ RISC-V, a popular open-source instruction set architecture (ISA), employs six ba
 
 | Assembly Instruction | Instruction format         |  Hexadecimal equivalent                             | Binary equivalent
 |----------------------|----------------------------|-----------------------------------------------------|-------------------
-| ADD r10, r11, r12    | R                          | <code style="color : name_color"> 0x00C58033 </code>| 0000 0000 1100 0101 1000 0101 0011 0011
+| ADD r10, r11, r12    | R                          | <code style="color : name_color"> 0x00C58533 </code>| 0000 0000 1100 0101 1000 0101 0011 0011
 | SUB r12, r10, r11    | R                          | <code style="color : name_color"> 0x40B50633 </code>| 0100 0000 1011 0101 0000 0110 0011 0011
 | AND r11, r10, r12    | R                          | <code style="color : name_color"> 0x00C575B3 </code>| 0000 0000 1100 0101 0111 0101 1011 0011
-| OR r8, r11, r5       | R                          | <code style="color : name_color"> 0x005B7833 </code>| 0000 0000 0101 0101 1110 0100 0011 0011
+| OR r8, r11, r5       | R                          | <code style="color : name_color"> 0x0055E433 </code>| 0000 0000 0101 0101 1110 0100 0011 0011
 | XOR r8, r10, r4      | R                          | <code style="color : name_color"> 0x00454433 </code>| 0000 0000 0100 0101 0100 0100 0011 0011
 | SLT r00, r1, r4      | R                          | <code style="color : name_color"> 0x0040A033 </code>| 0000 0000 0100 0000 1010 0000 0011 0011
 | ADDI r02, r2, 5      | I                          | <code style="color : name_color"> 0x00510113 </code>| 0000 0000 0101 0001 0000 0001 0001 0011
-| SW r2, r0, 4         | S                          | <code style="color : name_color"> 0x00204223 </code>| 0000 0000 0010 0000 0010 0001 0010 0011
+| SW r2, r0, 4         | S                          | <code style="color : name_color"> 0x00202123 </code>| 0000 0000 0010 0000 0010 0001 0010 0011
 | SRL r06, r01, r1     | R                          | <code style="color : name_color"> 0x0010D333 </code>| 0000 0000 0001 0000 1101 0011 0011 0011
-| BNE r0, r0, 20       | B                          | <code style="color : name_color"> 0x00001463 </code>| 0000 0000 0000 0000 0001 0000 0110 0011
-| BEQ r0, r0, 15       | B                          | <code style="color : name_color"> 0x00003863 </code>| 0000 0000 0000 0000 0000 0000 0110 0011
+| BNE r0, r0, 20       | B                          | <code style="color : name_color"> 0x00001063 </code>| 0000 0000 0000 0000 0001 0000 0110 0011
+| BEQ r0, r0, 15       | B                          | <code style="color : name_color"> 0x00000063 </code>| 0000 0000 0000 0000 0000 0000 0110 0011
 | LW r03, r01, 2       | I                          | <code style="color : name_color"> 0x0020A183 </code>| 0000 0000 0010 0000 1010 0001 1000 0011
 | SLL r05, r01, r1     | R                          | <code style="color : name_color"> 0x001092B3 </code>| 0000 0000 0001 0000 1001 0010 1011 0011
  
