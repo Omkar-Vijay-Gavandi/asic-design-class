@@ -463,7 +463,9 @@ RISC-V, a popular open-source instruction set architecture (ISA), employs six ba
 ![image](https://github.com/user-attachments/assets/55578f7c-275b-42e4-b7d4-b91c2de8f741)
 
 
+## Conclusion
 
+The ISA used by us is not in accordance with the one which is used in the program. Therefore we can observe some discrepancies in the outputs of the instructions assigned to me and the original instructions which were designed with respect to a different ISA.
 
 
 
