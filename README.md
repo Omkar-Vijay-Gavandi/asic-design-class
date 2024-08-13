@@ -551,7 +551,7 @@ We run the following  command in order to compile the c code on risc v architect
 riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o analogcomp.o analogcomp.c
 ```
  The output is as follows
-![riscvo1 compiled output](https://github.com/user-attachments/assets/b275aded-4cfd-451b-9def-66017cf44162)
+![ofast_output](https://github.com/user-attachments/assets/d8edebb7-752c-4e60-831c-4a3892fcca8e)
 
 
  We are only concerned with the corresponding assembly language program out of the output generated previously. In order to get the same we run the following code.
@@ -562,7 +562,7 @@ riscv64-unknown-elf-objdump -d analogcomp.o | less
 
 The output is as follows and the number of instructions in the assembly code can be found out as follows:-
 
-![ofast output](https://github.com/user-attachments/assets/16b9db9f-ee33-4135-81f0-dd56369bc2b6)
+![ofast output_new](https://github.com/user-attachments/assets/c0b098b3-f176-4a9b-b840-1b2e1de52e06)
 
 Similar to O1 we can see that the decimal value of obtained is 36 which when divided by 4 gives us 9 which are the total number of addressing lines in our code.
 
