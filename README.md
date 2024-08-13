@@ -530,7 +530,7 @@ riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o analogcomp.o analogcomp.c
 ```
  The output is as follows
 
-![riscvo1 compiled output](https://github.com/user-attachments/assets/e31f8079-8df2-4d47-ade1-e7727cd90eea)
+![O1_output](https://github.com/user-attachments/assets/8e7f425a-eca4-4345-be0b-eaa863f3237b)
 
  We are only concerned with the corresponding assembly language program out of the output generated previously. In order to get the same we run the following code.
 
@@ -565,6 +565,38 @@ The output is as follows and the number of instructions in the assembly code can
 ![ofast output_new](https://github.com/user-attachments/assets/c0b098b3-f176-4a9b-b840-1b2e1de52e06)
 
 Similar to O1 we can see that the decimal value of obtained is 36 which when divided by 4 gives us 9 which are the total number of addressing lines in our code.
+
+### Result of the RISC V O1 and Ofast command
+
+Code for compiling the objdump file
+```bash
+spike pk analogcomp.o
+```
+
+Result for O1
+
+![Spike O1](https://github.com/user-attachments/assets/4ca600a6-10ed-4f2d-b5f3-2974dc064a94)
+
+Result for Ofast
+
+![Spike Ofast](https://github.com/user-attachments/assets/59dea6da-dccd-4713-b6e4-ad34c59a3826)
+
+### Debegging the assembly code for O1 and Ofast
+
+We use the following command for debugging the code
+
+```bash
+spike -d pk analogcomp.o
+```
+For O1 we have the following code
+
+![debugger_o1](https://github.com/user-attachments/assets/550d7cbc-11a2-4440-abd0-216e5f5a9d09)
+
+For Ofast we have the following code
+
+![debugger_ofast](https://github.com/user-attachments/assets/5aa1081e-f8e7-439a-8792-b2becbc8ebc1)
+
+While debugging we have found out the starting address and have initialised the program counter to this address. The first instruction for both O1 and Ofast involves the stack pointer so we have found out the starting address of the stack pointer. After the execution of that instruction we can observe that the address of the stack pointer is to be reduced by 32 in hexadecimal which is equivalent to 20 in decimal which is what we observe when the address of the stack pointer reduces from 50 to 30.
 
 </details>
 
