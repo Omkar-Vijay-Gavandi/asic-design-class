@@ -530,7 +530,7 @@ riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o analogcomp.o analogcomp.c
 ```
  The output is as follows
 
-![riscvo1 compiled output](https://github.com/user-attachments/assets/9e48e0a4-48a9-418e-bc7c-7b191e665bcf)
+![riscvo1 compiled output](https://github.com/user-attachments/assets/e31f8079-8df2-4d47-ade1-e7727cd90eea)
 
  We are only concerned with the corresponding assembly language program out of the output generated previously. In order to get the same we run the following code.
 
@@ -540,9 +540,9 @@ riscv64-unknown-elf-objdump -d analogcomp.o | less
 
 The output is as follows and the number of instructions in the assembly code can be found out as follows:-
 
-![main_function riscv o1](https://github.com/user-attachments/assets/392a9d98-8491-489f-9478-d62117923520)
+![main_function riscv o1](https://github.com/user-attachments/assets/e14675c1-3f2e-4b5f-8efa-cfcbe255e138)
 
-Here we can observe that the decimal value is 36. Also in the assembly language 1 line of code takes up 4 bytes of space in the memory therefore we can verify that the number of lines in the assembly language is 36/4 which is 9
+Here we can observe that the decimal value is 180. Also in the assembly language 1 line of code takes up 4 bytes of space in the memory therefore we can verify that the number of lines in the assembly language is 180/4 which is 45.
 
 ### For Ofast
 
@@ -551,16 +551,20 @@ We run the following  command in order to compile the c code on risc v architect
 riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o analogcomp.o analogcomp.c
 ```
  The output is as follows
-
+![riscvo1 compiled output](https://github.com/user-attachments/assets/b275aded-4cfd-451b-9def-66017cf44162)
 
 
  We are only concerned with the corresponding assembly language program out of the output generated previously. In order to get the same we run the following code.
-
+ 
 ```bash
 riscv64-unknown-elf-objdump -d analogcomp.o | less
 ```
 
 The output is as follows and the number of instructions in the assembly code can be found out as follows:-
+
+![ofast output](https://github.com/user-attachments/assets/16b9db9f-ee33-4135-81f0-dd56369bc2b6)
+
+Similar to O1 we can see that the decimal value of obtained is 36 which when divided by 4 gives us 9 which are the total number of addressing lines in our code.
 
 </details>
 
