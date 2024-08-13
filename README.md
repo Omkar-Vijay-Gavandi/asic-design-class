@@ -467,6 +467,108 @@ RISC-V, a popular open-source instruction set architecture (ISA), employs six ba
 
 The ISA used by us is not in accordance with the one which is used in the program. Therefore we can observe some discrepancies in the outputs of the instructions assigned to me and the original instructions which were designed with respect to a different ISA.
 
+</details>
+
+<details>
+<summary> Assignment 5</summary>
+<br>
+
+## Write a code for an Analog Comparator in C to compare the analog voltages
+
+### * Step 1:- Open the leafpad editor and write the c code which is executable on gcc and risc v gcc
+
+```bash
+#include <stdio.h>
+
+// Mock function to simulate analog read
+int analogRead(int pin) {
+    // In real application, this would interface with hardware ADC
+    return pin * 100;  // Example value
+}
+
+int main() {
+    int pinA = 3;
+    int pinB = 4;
+    int valueA, valueB;
+
+    // Read analog inputs
+    valueA = analogRead(pinA);
+    valueB = analogRead(pinB);
+
+    // Compare values
+    if (valueA > valueB) {
+        printf("Pin A has a higher voltage.\n");
+    } else if (valueA < valueB) {
+        printf("Pin B has a higher voltage.\n");
+    } else {
+        printf("Both pins have the same voltage.\n");
+    }
+
+    return 0;
+}
+```
+
+
+![gcc image 1](https://github.com/user-attachments/assets/318f4caf-6613-4bbe-b240-06e800ce4f6a)
+
+### * Step 2:- Compile the above code using this command on the gcc compiler. 
+```bash
+gcc analogcomp.c
+```
+Here analogcomp is the name of my c program file
+
+### * The output of the code is as follows:-
+
+![gcc image 2](https://github.com/user-attachments/assets/a6624c2b-8f71-458c-a35c-7c5980d18f3e)
+
+### * Step 3:- Compile the above code on RISC V architecture for O1 and Ofast 
+
+### For O1
+ We run the following  command in order to compile the c code on risc v architecture for O1
+```bash
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o analogcomp.o analogcomp.c
+```
+ The output is as follows
+
+![riscvo1 compiled output](https://github.com/user-attachments/assets/9e48e0a4-48a9-418e-bc7c-7b191e665bcf)
+
+ We are only concerned with the corresponding assembly language program out of the output generated previously. In order to get the same we run the following code.
+
+```bash
+riscv64-unknown-elf-objdump -d analogcomp.o | less
+```
+
+The output is as follows and the number of instructions in the assembly code can be found out as follows:-
+
+![main_function riscv o1](https://github.com/user-attachments/assets/392a9d98-8491-489f-9478-d62117923520)
+
+Here we can observe that the decimal value is 36. Also in the assembly language 1 line of code takes up 4 bytes of space in the memory therefore we can verify that the number of lines in the assembly language is 36/4 which is 9
+
+### For Ofast
+
+We run the following  command in order to compile the c code on risc v architecture for O-fast
+```bash
+riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o analogcomp.o analogcomp.c
+```
+ The output is as follows
+
+
+
+ We are only concerned with the corresponding assembly language program out of the output generated previously. In order to get the same we run the following code.
+
+```bash
+riscv64-unknown-elf-objdump -d analogcomp.o | less
+```
+
+The output is as follows and the number of instructions in the assembly code can be found out as follows:-
+
+</details>
+
+
+
+
+
+
 
 
 
