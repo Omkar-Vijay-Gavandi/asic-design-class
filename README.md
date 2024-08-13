@@ -119,7 +119,7 @@ until pc 0 10184
 until pc 0 100bo
 ```
 
-### The first instruction involves the stack pointer. Therefore in order to check the initial and final contents of the stack pointer we use the follwoing code. [O1]
+### The first instruction involves the stack pointer. Therefore in order to check the initial and final contents of the stack pointer we use the following code. [O1]
 
 ```bash
 reg 0 sp
