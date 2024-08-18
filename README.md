@@ -607,7 +607,36 @@ We have thereby verified the output of the analog comparator on the GCC and the 
 
 
 
+</details>
 
+<details>
+<summary> Assignment 6</summary>
+<br>
+  
+### Program Counter
+
+The program counter is supposed to increase its value by 4 to fetch the next instruction from the memory. The below image specifies the same. In case a reset is triggered the program counter will be initialised to zero for the next instruction.
+
+The following diagram explains the working of the program counter
+
+![image](https://github.com/user-attachments/assets/72baefa6-30cb-4a22-8caa-b370954765bc)
+
+The following is the code for the working of the program counter
+
+```bash
+$pc[31:0] = >>1$reset ? 0 : ( >>1$pc + 31'h4 );
+```
+We get the following output after executing the code:-
+
+![image](https://github.com/user-attachments/assets/777175fd-97e5-40d9-94c3-2cf5e07406de)
+
+### Adding the instruction memory
+
+![image](https://github.com/user-attachments/assets/076a1cc9-81f8-4603-8612-394ddd2078fd)
+
+
+
+</details>
 
 
 
