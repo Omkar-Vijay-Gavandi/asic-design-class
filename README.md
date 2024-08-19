@@ -1018,6 +1018,13 @@ $is_bgeu = $dec_bits ==? 11'bx_111_1100011;
 $is_addi = $dec_bits ==? 11'bx_000_0010011;
 $is_add = $dec_bits ==? 11'b0_000_0110011;
 ```
+We also have to update the program counter
+
+```bash
+$pc[31:0] = >>1$reset ? 32'b0 :
+>>1$taken_branch ? >>1$br_target_pc :
+>>1$pc + 32'd4;
+```
 
 The output for the above code is as follows:-
 
@@ -1086,6 +1093,19 @@ $br_target_pc[31:0] = $pc +$imm;
 The output is as follows:-
 
 ![image](https://github.com/user-attachments/assets/fbb3a7b5-3b26-4299-b6e0-5ef9b8b335bc)
+
+
+### Testbench
+In order to check whether the code written is correct or not we verify it using the testbench for the 1st five cycles
+
+```bash
+*passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9) ;
+```
+Upon checking the log file we get the following result
+
+![image](https://github.com/user-attachments/assets/5602e0c3-ce91-4f02-867c-36d600824fb0)
+
+
 
 
 
