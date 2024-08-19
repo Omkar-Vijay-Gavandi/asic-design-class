@@ -1043,7 +1043,56 @@ The output for the code is as follows:-
 
 ![image](https://github.com/user-attachments/assets/28ba722a-4320-4deb-a5a7-8c7ccaceecac)
 
-### 
+### Arithmetic and Logic Unit
+
+Used to perform arithmetic operations on the values stored in the registers. The code for the same is as follows:-
+
+```bash
+$result[31:0] = $is_addi ? $src1_value + $imm :
+                $is_add ? $src1_value + $src2_value :
+                32'bx ;
+```
+
+Here we have written code for the addi and add operation.
+
+![image](https://github.com/user-attachments/assets/2d40115d-c6d8-4ed0-9006-eb507c3ba415)
+
+### Register File Write
+
+Once the ALU performs the operations on the values stored in ther registers we may need to put these values back into these registers based. For this we use the register file write. We also have to make sure that we should not write into the register if the destination register is x0 as it is always meant to be 0. The code is as follows:-
+
+```bash
+$rf_wr_en = $rd_valid && $rd != 5'b0;
+$rf_wr_index[4:0] = $rd;
+$rf_wr_data[31:0] = $result;
+```
+
+![image](https://github.com/user-attachments/assets/a2c1f0d4-0c8f-4400-b81a-c12d0ec20ddd)
+
+### Branch instructions
+
+Based on the control input we may need to jump to some different address after a particular instruction based on some condition generated during run-time. This is when we use the branch instructions. The code is as follows:-
+
+```bash
+$taken_branch = $is_beq ? ($src1_value == $src2_value):
+	        $is_bne ? ($src1_value != $src2_value):
+	        $is_blt ? (($src1_value < $src2_value) ^ ($src1_value[31] != $src2_value[31])):
+	        $is_bge ? (($src1_value >= $src2_value) ^ ($src1_value[31] != $src2_value[31])):
+                $is_bltu ? ($src1_value < $src2_value):
+                $is_bgeu ? ($src1_value >= $src2_value):
+	        1'b0;
+$br_target_pc[31:0] = $pc +$imm;
+```
+The output is as follows:-
+
+![image](https://github.com/user-attachments/assets/fbb3a7b5-3b26-4299-b6e0-5ef9b8b335bc)
+
+
+
+
+
+
+
 
 
 
