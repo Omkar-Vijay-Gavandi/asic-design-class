@@ -895,6 +895,9 @@ The output is as follows:-
 
 
 
+## Basic RISC V architecture
+
+![image](https://github.com/user-attachments/assets/58c6a3f1-ba27-43a9-aff0-1fa285ff7a73)
 
 
   
@@ -913,11 +916,18 @@ $pc[31:0] = >>1$reset ? 0 : ( >>1$pc + 31'h4 );
 ```
 We get the following output after executing the code:-
 
-![image](https://github.com/user-attachments/assets/777175fd-97e5-40d9-94c3-2cf5e07406de)
+![image](https://github.com/user-attachments/assets/9eef0a38-71d1-4fa4-bbf6-aa98283bc534)
+
 
 ### Adding the instruction memory
 
+The program counter points to the next address where the instruction is present in the instruction memory. We need to fetch this instruction in order to process it and make further calculations.
+
 ![image](https://github.com/user-attachments/assets/076a1cc9-81f8-4603-8612-394ddd2078fd)
+
+
+
+
 
 
 
