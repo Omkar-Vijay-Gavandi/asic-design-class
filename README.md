@@ -999,6 +999,7 @@ $rs2_valid = $is_r_instr || $is_s_instr || $is_b_instr;
          ?$rd_valid
             $rd[4:0] = $instr[11:7];
 ```
+At a time only one instruction is passed on to for decode. This instruction can be of any 1 of the 6 instruction set types. Thus we need to validate that it belongs to the respective category or else there may be a clash of different instruction set types.
 
 ![image](https://github.com/user-attachments/assets/b0033133-1070-484c-86bd-4931b4eaf296)
 
@@ -1021,6 +1022,31 @@ $is_add = $dec_bits ==? 11'b0_000_0110011;
 The output for the above code is as follows:-
 
 ![image](https://github.com/user-attachments/assets/671e6e35-f9b2-4726-9ed4-3aee6df9e99c)
+
+### Register File Read and Enable
+
+Here we read the instructions from the respective instruction memory and store it in the registers. We have 2 register slots the read the instructions from the memory. We send these stored instructions to the ALU after this process.
+
+The code is as follows:-
+
+```bash
+$rf_rd_en1 = $rs1_valid;
+$rf_rd_index1[4:0] = $rs1;
+$rf_rd_en2 = $rs2_valid;
+$rf_rd_index2[4:0] = $rs2;
+
+$src1_value[31:0] = $rf_rd_data1;
+$src2_value[31:0] = $rf_rd_data2;
+```
+
+The output for the code is as follows:-
+
+![image](https://github.com/user-attachments/assets/28ba722a-4320-4deb-a5a7-8c7ccaceecac)
+
+### 
+
+
+
 
 
 
