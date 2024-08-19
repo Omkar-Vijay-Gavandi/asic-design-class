@@ -804,6 +804,97 @@ The output for the following code is as follows:-
 
 ![validity_pytha](https://github.com/user-attachments/assets/722d8573-052f-461d-9642-d88027b8fa5d)
 
+### Total Distance Calculator
+
+Used to calculate the total distance travelled in a series of hops. The code for the same is given as follows:-
+
+```bash
+\m5_TLV_version 1d: tl-x.org
+\m5
+   // =================================================
+   // Welcome!  New to Makerchip? Try the "Learn" menu.
+   // =================================================
+   
+   //use(m5-1.0)   /// uncomment to use M5 macro library.
+\SV
+	`include "sqrt32.v"
+   // Macro providing required top-level module definition, random
+   // stimulus support, and Verilator config.
+   m5_makerchip_module   // (Expanded in Nav-TLV pane.)
+\TLV
+   |calc
+      @1
+         $reset = *reset;
+         $clk_omkar = *clk;
+      ?$valid
+         @1
+            $aa_sq[31:0] = $aa[3:0] * $aa[3:0];
+            $bb_sq[31:0] = $bb[3:0] * $bb[3:0];
+         @2
+            $cc_sq[31:0] = $aa_sq + $bb_sq;
+         @3
+            $cc[31:0] = sqrt($cc_sq);
+         @4
+            $tot_dist[63:0] = $reset ? 0 : $valid ? (>>1$tot_dist + $cc) : >>1$tot_dist;
+
+   // Assert these to end simulation (before Makerchip cycle limit).
+   *passed = *cyc_cnt > 16'd30;
+   *failed = 1'b0;
+\SV
+   endmodule
+```
+The output for the above code is as follows:-
+
+![Total_distance_calculator](https://github.com/user-attachments/assets/49ba4c3c-893b-40c0-9742-cb75a2b8d182)
+
+
+### Validity on Cycle Calculator
+
+The code is as follows:-
+
+```bash
+\m5_TLV_version 1d: tl-x.org
+\m5
+   
+   // =================================================
+   // Welcome!  New to Makerchip? Try the "Learn" menu.
+   // =================================================
+   
+   //use(m5-1.0)   /// uncomment to use M5 macro library.
+\SV
+   // Macro providing required top-level module definition, random
+   // stimulus support, and Verilator config.
+   m5_makerchip_module   // (Expanded in Nav-TLV pane.)
+\TLV
+   //$count[31:0] = 32'b0;
+   |calc
+      @1
+         $clk_omkar = *clk;
+         $reset = *reset;
+         $valid = $reset ? 0 : (>>1$valid + 1);
+         $valid_or_reset = $valid || $reset;
+      ?$valid
+         @1
+            $val1[31:0] = >>2$result[31:0];
+            $val2[31:0] = $rand2[3:0];
+         @2
+            $out[31:0] = $valid_or_reset ? 32'b0 : ($sel[1:0] == 2'b00) ? ($val1[31:0] + $val2[31:0]) : ($sel[1:0] == 2'b01) ? ($val1[31:0] - $val2[31:0]) : ($sel[1:0] == 2'b10) ? ($val1[31:0] * $val2[31:0]) : ($sel[1:0] == 2'b11) ? ($val2[31:0] != 0 ? ($val1[31:0] / $val2[31:0]) : 32'bx) :  32'b0;
+   // Assert these to end simulation (before Makerchip cycle limit).
+   *passed = *cyc_cnt > 40;
+   *failed = 1'b0;
+\SV
+   endmodule
+
+```
+
+The output is as follows:-
+
+![validity_cycle_calculator](https://github.com/user-attachments/assets/459c4f68-b246-448a-8845-5665fff4f4f8)
+
+
+
+
+
 
 
   
