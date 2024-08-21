@@ -612,6 +612,8 @@ We have thereby verified the output of the analog comparator on the GCC and the 
 <details>
 <summary> Assignment 6</summary>
 <br>
+	
+# Digital Logic with TL-Verilog and Makerchip
 
 ### Sequential Calculator
 
@@ -893,9 +895,9 @@ The output is as follows:-
 
 
 
+# Basic RISC-V CPU microarchitecture
 
-
-## Basic RISC V architecture
+In this step we are designing the individual blocks of the microprocessor.
 
 ![image](https://github.com/user-attachments/assets/58c6a3f1-ba27-43a9-aff0-1fa285ff7a73)
 
@@ -1101,9 +1103,53 @@ In order to check whether the code written is correct or not we verify it using 
 ```bash
 *passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9) ;
 ```
+
 Upon checking the log file we get the following result
 
 ![image](https://github.com/user-attachments/assets/5602e0c3-ce91-4f02-867c-36d600824fb0)
+
+# Pipelined RISC V CPU
+We observe some interdependencies of the values on one another during the execution of the instructions. Thus incorrect data gets processed and we get logical errors in the code. In order to solve these problems we have increased the number of pipelined stages in the code.
+
+
+
+Final Pipelined Output:-
+
+We can observe the values in the different registers on the viz tab. The following image shows the 1st clock cycle. 
+
+![image](https://github.com/user-attachments/assets/04a4dd68-11b8-4dda-9d3f-f13f56d1fe31)
+
+Just like the above cycle we can move across different clock cycles and see the updated results in the registers. In our code we are gradually adding the values from 1 to 9 and are observing the final output in the registers. It takes 53 cycles for the register r14 to get updated to the value 45.
+
+![image](https://github.com/user-attachments/assets/d79de8b8-f708-42dd-b099-20182834f413)
+
+The execution of the full code takes 58 cycles including the load and the store operations.
+
+![image](https://github.com/user-attachments/assets/baf7967a-98f1-4ffb-a9d3-378ca56ed3b0)
+
+
+
+The following image shows the clock signal which contains my name clk_omkar
+
+![image](https://github.com/user-attachments/assets/21b93a63-758e-4904-bcdd-8a692defff36)
+
+The following image shows the reset signal 
+
+![image](https://github.com/user-attachments/assets/32c6e3f1-99b5-4fd5-bbca-a0ddde1b906c)
+
+The following image shows the gradual addition of the in the r14 register
+
+![image](https://github.com/user-attachments/assets/9ffdb14b-506b-4a7d-ac72-3756731ffd26)
+
+
+The following is the final block diagram of the processor designed 
+
+![image](https://github.com/user-attachments/assets/f90b3d7e-52f3-4b58-a1a9-534076741a7d)
+
+
+
+
+
 
 
 
