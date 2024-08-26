@@ -1224,7 +1224,11 @@ After creating the .vcd file now we run this file on gtkwave by using the below 
 gtkwave pre_synth_sim.out
 ```
 
-We get the following waveform which is the addition of the numbers from 1 to 10
+I have executed all the above code as follows:-
+
+![image](https://github.com/user-attachments/assets/1b9ed9cb-e517-4b01-982c-72987ae23b37)
+
+Upon executing the gtkwave file We get the following waveform which is the addition of the numbers from 1 to 10
 
 ![image](https://github.com/user-attachments/assets/fbcec343-e202-4f40-9c95-560abd6994cc)
 	
