@@ -1180,6 +1180,40 @@ The following is the final block diagram of the processor designed
 
 </details>
 
+<details>
+<summary> Assignment 7</summary>
+	
+# Convert TLV to Verilog using Sandpiper and write a testbench and simulate using iverilog and gtkwave to view the output waveforms. Plot below signals from gtkwave
+
+The original tlv code is as follows:-
+
+```bash
+
+```
+
+We need to alter this code and add the module files in the \SV file
+
+
+After this step we will convert this TL Verilog code into Verilog code by installing a few modules and running the sandpiper command as follows
+
+```bash
+
+```
+
+After this step we have the verilog code with us as follows
+
+```bash
+
+```
+After this we will write a testbench for the above code and compile and simulate the same on iverilog and gtkwave
+
+
+We get the following output after the simulate and we can observe the waveforms in gtkwave
+
+
+	
+</details>
+
 
 
 
