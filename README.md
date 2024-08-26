@@ -1185,32 +1185,48 @@ The following is the final block diagram of the processor designed
 	
 # Convert TLV to Verilog using Sandpiper and write a testbench and simulate using iverilog and gtkwave to view the output waveforms. Plot below signals from gtkwave
 
-The original tlv code is as follows:-
+Firstly we need to add the sandpiper module and the other necessary packages as follows:-
 
 ```bash
-
+ $ sudo apt install make python python3 python3-pip git iverilog gtkwave docker.io
+ $ sudo chmod 666 /var/run/docker.sock
+ $ cd ~
+ $ pip3 install pyyaml click sandpiper-saas
 ```
 
-We need to alter this code and add the module files in the \SV file
-
-
-After this step we will convert this TL Verilog code into Verilog code by installing a few modules and running the sandpiper command as follows
+After this we need to clone the repo containing VSDBabySoC design files and testbench using the following commands
 
 ```bash
-
+git clone https://github.com/manili/VSDBabySoC.git
 ```
 
-After this step we have the verilog code with us as follows
+We now need to convert the original TLV file to the verilog code with the help of the sandpiper package.
 
 ```bash
-
+sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/
 ```
-After this we will write a testbench for the above code and compile and simulate the same on iverilog and gtkwave
 
+We now have the verilog code with us. We now need to run this verilog code along with the testbench and get the output using the following command.
 
-We get the following output after the simulate and we can observe the waveforms in gtkwave
+```bash
+iverilog -o output/pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module
+```
 
+After this we need to generate the .vcd file which will be executed in the gtkwave platform to create the waveforms.
 
+```bash
+./pre_synth_sim.out
+```
+
+After creating the .vcd file now we run this file on gtkwave by using the below command 
+
+```bash
+gtkwave pre_synth_sim.out
+```
+
+We get the following waveform which is the addition of the numbers from 1 to 10
+
+![image](https://github.com/user-attachments/assets/fbcec343-e202-4f40-9c95-560abd6994cc)
 	
 </details>
 
