@@ -1283,7 +1283,7 @@ The output of the above code is as follows:-
 <details>
 
 
- <summary> Assignment 8 </summary>
+ <summary> Assignment 9 </summary>
 
  # Introduction to Verilog RTL Design and Synthesis
 
@@ -1385,6 +1385,89 @@ Based on the above information we need to use the cells which take care of the a
 
 
 # Lab 3 ( Introduction to YOSYS)
+
+We have a design in the form of a verilog code which we need to convert into a netlist. For this purpose we are using the synthesizer called YOSYS. In this lab we use the YOSYS synthesizer which uses the components present in the .lib file to make the netlist.
+
+![image](https://github.com/user-attachments/assets/3f1c6dcd-3d17-4ac8-ae91-5d66b296c888)
+
+![image](https://github.com/user-attachments/assets/9f67c0f2-2a70-41c4-8c57-122639d399cf)
+
+![image](https://github.com/user-attachments/assets/bf1f58cc-7602-49b1-be59-eca0626d1366)
+
+![image](https://github.com/user-attachments/assets/eade5b92-1d90-455c-8ba3-a4dfb3e2522e)
+
+![image](https://github.com/user-attachments/assets/72a65504-1c94-4f44-98c9-7666f8f9311c)
+
+![image](https://github.com/user-attachments/assets/094c499d-97c7-4a7d-90cb-bd5f1d75d9b8)
+
+![image](https://github.com/user-attachments/assets/43b55831-c456-47b6-ab43-6810a654a0f4)
+
+![image](https://github.com/user-attachments/assets/f0c889a4-2052-471a-a8e6-be2a6a806c83)
+
+![image](https://github.com/user-attachments/assets/7f195185-4fdc-49dc-b47c-78be5200e003)
+
+We use the abc -liberty command to find the convert the RTL to the netlist.
+
+```bash
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+
+After running the above code we get the below output
+
+![image](https://github.com/user-attachments/assets/de274a9f-3028-4aa4-805b-7d1b98f835e7)
+
+![image](https://github.com/user-attachments/assets/f8452fec-653e-432c-b27d-8782759e18f6)
+
+The realised netlist is as follows:-
+
+We run the following command:-
+
+```bash
+show
+```
+
+![image](https://github.com/user-attachments/assets/4ffd5218-e34a-46e6-aac0-733a4c98474e)
+
+
+![image](https://github.com/user-attachments/assets/78e50e65-debc-46bb-a3d0-a0c7950f925b)
+
+We observe a 2:1 mux block in our circuit.
+
+Now we observe the netlist as shown below
+
+```bash
+write_verilog good_mux_netlist.v
+```
+
+![image](https://github.com/user-attachments/assets/abe85e16-dbb7-484c-9f9e-ab27f3873aab)
+
+![image](https://github.com/user-attachments/assets/0ca641af-0735-4d02-adc9-dd91f3e8e231)
+
+```bash
+write_verilog -noattr good_mux_netlist.v
+```
+
+![image](https://github.com/user-attachments/assets/f0e2b102-014b-43f6-bd27-1aa6dd2a2e95)
+
+
+![image](https://github.com/user-attachments/assets/e70c7f4d-e15b-4c2b-acec-dbaa3197eae7)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
