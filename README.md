@@ -1280,7 +1280,27 @@ The output of the above code is as follows:-
 </details>
 
 
+<details>
 
+
+ <summary> Assignment 8 </summary>
+
+ # Introduction to Verilog RTL Design and Synthesis
+
+ ### Simulator
+
+ Tool used to check the RTL Design for gievn specifications. It is iverilog in my case.
+
+ ### Design
+
+ Verilog code or set of verilog code which includes functionality to meet with the required specifications.
+
+ ### Testbench
+
+ Setup to apply stimulus to the design to check the functionality.
+
+ 
+</details>
 
 
 
