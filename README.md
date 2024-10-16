@@ -1299,6 +1299,104 @@ The output of the above code is as follows:-
 
  Setup to apply stimulus to the design to check the functionality.
 
+
+ # LAB 1 (Installation of the Repository) 
+
+ ![image](https://github.com/user-attachments/assets/076b3284-b040-45c3-b92c-a7d32fbf4482)
+
+ The following picture shows us all the verilog codes and the corresponding testbench files present in the repository.
+
+ ![image](https://github.com/user-attachments/assets/b56df89b-e3a6-4db4-9cda-065a50ca7265)
+
+
+  # LAB 2(Simulation using Iverilog and Gtkwave) 
+
+
+ ![image](https://github.com/user-attachments/assets/1a10b446-08a9-4644-80c6-41b7a29b1283)
+
+ ![image](https://github.com/user-attachments/assets/91577ff0-3fab-4452-9653-66f28dd9bb0f)
+
+The verilog code and its corresponding testbench as follows:- 
+
+
+ ![image](https://github.com/user-attachments/assets/62da0621-9834-40b7-bfba-a73fa423926a)
+
+
+### Synthesizer
+
+It is the tool which is used to convert an RTL to a netlist. Yosys is the synthesizer which is used in my case.
+
+![image](https://github.com/user-attachments/assets/3d72d6bd-21e3-4a87-9fec-a847335a3dd3)
+
+Here the Netlist is the representation of the design in the form of the standard cells present in the .lib file.
+
+![image](https://github.com/user-attachments/assets/ae2b4e34-9ff6-4901-b341-16812657d2d9)
+
+### Verification of Synthesis
+
+![image](https://github.com/user-attachments/assets/b5bf62c3-28b5-44ea-90ae-11a7380a46f0)
+
+We use the same testbench which was used for RTL simulation earlier to find the output using gtkwave. We can do this only because the primary inputs fed into the design and that of the netlist will remain the same.
+
+## Logic Synthesis
+
+### RTL Design
+
+It is the behavioural representation of the required specification.
+
+![image](https://github.com/user-attachments/assets/92bb8277-b40f-4d38-a310-21c819304aa3)
+
+So now we have an RTL code but we need to map this code into a circuit which is where we use the process of synthesis. The RTL code is converted into the gates and connections are made between the gates and this is called as netlist.
+
+![image](https://github.com/user-attachments/assets/a60e9806-64f7-43ba-9e77-3bb86c3a22c3)
+
+
+### What is .lib?
+
+It is a collection of logical modules. It includes basic logic gates like AND,OR, NOT, etc, It contains the different flavours of the same input as in it will have different versions of the same gate. For example in the and gate it will contain a slow,medium and fast version of the AND gate.
+
+### Why do we need different versions of the same gate?
+
+The combinational delay in the circuit is responsible for the maximum speed of operaiton of the digital logic circuit. So we need cells that can work faster to make the combinational delay as small as possible. Thus in this case we need the combinational logic to be as fast as possible so that the required logic can be generated before the arrival of the next clock.
+
+![image](https://github.com/user-attachments/assets/87111b3f-a648-4be2-947f-d518d029b238)
+
+### So why do we need slow cells?
+
+We need slow cells to avoid the hold time violation. We need to capture the logic after the arrival of the clock. For this we need the logic to remain intact for a certain period of time. This is the hold time. If we use faster logic gates then it is possible that we might get a hold time violation.
+
+![image](https://github.com/user-attachments/assets/8ea42c58-5e37-4ffb-9ef3-25bfbb5fe181)
+
+## Faster vs Slower cells
+
+### Faster cells
+
+Advantages:- Less delay.
+Disadvatages:- More area and power.
+
+If the width of the transistors will be more it means that they will be able to source more current thereby reducing the delay.
+
+### Slower Cells
+
+Advantages:- Less area and power.
+Disadvantages:- More Delay.
+
+Based on the above information we need to use the cells which take care of the above points. So we need to guide the synthesizer through a constraints file.
+
+
+# Lab 3 ( Introduction to YOSYS)
+
+
+
+
+
+
+
+
+
+
+
+
  
 </details>
 
