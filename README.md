@@ -1455,7 +1455,7 @@ write_verilog -noattr good_mux_netlist.v
 
 # Lab 4 ( Introduction to Lab 4)
 
-The name of the library is sky130_fd_sc_hd__tt_025C_1v80.lib. Here sky130 is the name of the library where 130 is the technology node used. Here tt stands for typical. Libraries can be of different types including slow,fast and typical. The 025c is the temperature. There are three parameters which determine the performance of the transistors namely :- 
+The name of the library is sky130_fd_sc_hd__tt_025C_1v80.lib. Here sky130 is the name of the library where 130 is the technology node used. Here tt stands for typical. Libraries can be of different types including slow,fast and typical. The 025c is the temperature and v8 is the voltage. There are three parameters which determine the performance of the transistors namely :- 
 - Process
 - Voltage
 - Temperature
