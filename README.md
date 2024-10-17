@@ -1463,6 +1463,58 @@ The name of the library is sky130_fd_sc_hd__tt_025C_1v80.lib. Here sky130 is the
 Process can be different for the same transistor and there can be imperfections in the device but we still want the device to function appropriately.
 Similarly irrespective of voltage and temperature variations we need our device to work properly.
 
+The .lib file is as follows. In this file we can observe the units of temperature. voltage, leakage power , current unit , resistance , capacitive load, etc.
+![image](https://github.com/user-attachments/assets/2cf8ec72-3cbd-4fac-903a-ac1b906b3228)
+
+We have already mentioned that the .lib file contains different cells and also different versions of the same cells as shown in the following figure.
+![image](https://github.com/user-attachments/assets/314ca855-5528-4067-b2d3-e4b987fb818f)
+
+We can also observe the power associated with different pins as shown in the below figure
+
+![image](https://github.com/user-attachments/assets/cd013cac-7e59-4050-9e4b-0209af855a53)
+
+Comparison of different gates:-
+
+Here we have found the leakage power for all the different cases of the and gate.
+
+and 2_0
+
+![image](https://github.com/user-attachments/assets/abde8d8c-992e-4c3f-abb6-c1c05a604425)
+
+and 2_2
+
+![image](https://github.com/user-attachments/assets/eb257612-cabe-491d-8fac-284d810f372b)
+
+and 2_4
+
+![image](https://github.com/user-attachments/assets/612bb14a-bbb5-436e-b98d-a177cc5c72cd)
+
+In this case the area is the largest and thus the power needed for getting the respective outputs is also the largest for this sizing.
+
+
+# Lab 5 ( Hier Synthesis Flat Synthesis)
+
+In this lab we will observe the synthesis of the file multiple_modules.v  . In this file we have invoked multiple modules and have interconnected the output of module 1 with that of the module 2 and have found the output.
+
+![image](https://github.com/user-attachments/assets/8dca6c61-aef1-430d-b1af-5424aee2b425)
+
+The following diagram shows us the number of different components used in implementing the above circuit.
+
+![image](https://github.com/user-attachments/assets/75e31a31-655a-4fdb-bc25-b5f7cd254fdb)
+
+![image](https://github.com/user-attachments/assets/45219c9a-6ee6-4279-9cfb-0fea6e6f3a93)
+
+We get the following netlist:-
+
+![image](https://github.com/user-attachments/assets/1a214d12-9b7b-4b38-bdb5-60d966b03ce4)
+
+![image](https://github.com/user-attachments/assets/2672adb7-a27d-4437-84ee-553691e62d58)
+
+![image](https://github.com/user-attachments/assets/74630c45-b97a-47e8-88f6-6ea4925960c5)
+
+From the above code we can see that we are getting an or gate in the output.
+
+
 
 
 
