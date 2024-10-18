@@ -1514,6 +1514,38 @@ We get the following netlist:-
 
 From the above code we can see that we are getting an or gate in the output.
 
+We now move towards the flat synthesis. In the above code we can see that the hierarchy of the respective modules is preserved and we have seperate modules for the and and or gate but when we do the flatten synthesis we are instantiating all the gates inside one module. We can observe the difference as shown below.
+
+![image](https://github.com/user-attachments/assets/0d9f0cf4-3dff-4b74-848b-1b0df69e15ee)
+
+After doing the flat synthesis we get the following output:-
+
+![image](https://github.com/user-attachments/assets/d1cf2ae4-a18f-415e-80ff-2e7c9dd0c209)
+
+The difference between the earlier netlist and the flatten netlist is that in the previous case we could only see the blocks of u1 and u2 but here we can clearly observe the and and or gates in the netlist.
+
+We will now synthesize only the sub module 1. We do this in circuits where there are multiple instances of the same module so that we can directly invoke the same netlist into different parts of the circuit rather than synthesizing the entire design at once. If we synthesize the entire design at once we may not get the optimized output but when we use the divide and conquer method in a large circuit we synthseize individual blocks respectively and stitch the design fabric in the end to get optimized results. This way we get a much more optimized circuit.
+
+![image](https://github.com/user-attachments/assets/49ec3096-7f37-47ac-bf67-31fec38a213f)
+
+
+![image](https://github.com/user-attachments/assets/4ee44440-60c3-429a-90df-ba12fa159aba)
+
+We can observe that only 1 and gate is synthesized in this design
+
+![image](https://github.com/user-attachments/assets/bc3594f2-b18b-4363-8c6f-815d84a2c28b)
+
+
+
+![image](https://github.com/user-attachments/assets/96eb0154-7959-44cb-a993-23209e73ec46)
+
+
+# Why Flops are important in a circuit
+
+In a combinational circuit we implement a design but every gate in a circuit has its own propagation delay. Different gates have different delays in the circuit and due to these delays it is possible that momentarily we might get a different output than what is expected. This small change in actual output is what we call a glitch. As the size of the combinational circuit increases the glitches increase as the delays in the circuit will increase. Thus we put a flop at every stage in the circuit which feed the input into the combinational blocks only after being triggered by a clock in the design. Thus we eliminate the possibility of glitches in the output but it comes at a cost of large area due to addition of flops. We can also use the reset/set pins to set the initial values of the flops so that we do not feed in garbage values in the combinational circuit.
+
+
+
 
 
 
