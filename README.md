@@ -1546,10 +1546,27 @@ In a combinational circuit we implement a design but every gate in a circuit has
 
 
 
+# Coding styles for flops
+
+Note:- The below two codes are for aynchronous resets.
+
+![image](https://github.com/user-attachments/assets/bf35cb17-4fc5-4980-b613-becede867861)
+
+We can see that from the above code that the always block is triggered when either of the two conditions are met. If we see the positive edge aynchronous reset then we enter the block and change the output to 1'b0. In the other case we enter the block when we observe positive edge of the clock. When this condition is met the output of the clock is changed to the current input held by the flop. We are basically making a D Flip flop.
 
 
 
+Note:- The following are for synchronous reset
 
+![image](https://github.com/user-attachments/assets/6500242e-01cd-4bdc-8dba-f76b12aa60b2)
+
+The difference in the above code and the previous codes is that in this case the reset is triggered only when the positive edge of the clock is triggered and is thus synchronous.
+
+
+![image](https://github.com/user-attachments/assets/1a1fddb8-e4bb-4091-ba5a-0ad4464d793e)
+
+
+Similarly for the above code the we can see two conditions. The only difference is that we have given both the synchronous and the asynchronous reset.
 
 
 
