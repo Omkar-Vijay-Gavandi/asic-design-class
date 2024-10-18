@@ -1568,6 +1568,13 @@ The difference in the above code and the previous codes is that in this case the
 
 Similarly for the above code the we can see two conditions. The only difference is that we have given both the synchronous and the asynchronous reset.
 
+# LAB ( Synthesis Simulations) 
+
+![image](https://github.com/user-attachments/assets/b10e224c-e39a-4d57-a40f-1f0a3f00cf87)
+
+We can see that the output q is observed only when the clock is triggered after the asynchrous reset.
+
+
 
 
 
