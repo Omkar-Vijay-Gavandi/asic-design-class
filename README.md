@@ -2007,6 +2007,47 @@ Here we can observe a difference in the output after GLS Simulation. The output 
 
 
 
+## Mismatch Blocking Statement:-
+
+Aim :- Our aim is to synthesize the logic Y = ( A + B ) . C
+
+We want the or operation to take place followed by the and operation. Now we will simulate the code as given below.
+
+Code:- 
+
+![image](https://github.com/user-attachments/assets/12bac8fe-4b58-4fe1-adaa-2d7aa4b4e7a1)
+
+
+Simulation Results:-
+
+![image](https://github.com/user-attachments/assets/20fddfcc-5727-430c-acca-bc8fd88963ef)
+
+The output at the marked point should have been 1 but is 0. This is because of the mismatch due to the blocking statements where the code is run sequentially in the always block. The value of d is calculated first in the first statement which is followed by the calculation of x. In case we want to make this work we should reverse the order of statements written in the always block.
+
+Synthesis:-
+
+![image](https://github.com/user-attachments/assets/31c76c9e-25b8-4053-8bd2-ab826ec9c2c9)
+
+![image](https://github.com/user-attachments/assets/0abba558-381d-41cb-bc47-f0004583c915)
+
+![image](https://github.com/user-attachments/assets/d07d4291-8945-4f0d-979b-3bf58a58a3ed)
+
+
+
+
+The netlist is as follows:-
+
+![image](https://github.com/user-attachments/assets/7c090c40-9be7-4f2e-bcb9-b3439156d6e6)
+
+GLS Simulation:-
+
+![image](https://github.com/user-attachments/assets/3e701ac6-6233-445b-88f6-7473f828823e)
+
+If we observe the rtl simulation and compare it with the gls simulation results we can see that there is a mismatch between the outputs. This is due to the blocking statements used.
+
+
+
+
 
 
 
