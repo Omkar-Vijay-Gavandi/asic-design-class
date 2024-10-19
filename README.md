@@ -2048,7 +2048,7 @@ If we observe the rtl simulation and compare it with the gls simulation results 
 
 # Conclusion:-
 
-
+In the above course we have understood the conversion of the RTL Design to the gate level netlist using the library blocks. We have used the Yosys setup for this conversion. In order to verify the results in both the RTL and GLS simulation we have used the same testbench. We have studied the different types of libraries for the same gates or different gates which may be implemented based on the requirement of the end user based on the acceptable tradeoff. We have done the hier flatten synthesis where we have reduced the blocks in the netlist using the flatten command such that all the functionality of the multiple modules is executed within the top module thereby reducing the complexity of the design and the netlist. We have looked at different coding styles in RTL code and have found out which one is the best according to the code. We have also looked at codes like multiplication by 2 where the output can be directly inferred without the requirement of the different cells. We have also done the combinational and sequential logic optimizations alongwith the ununsed output optimizations. Lastly we have done the gate level synthesis where we have seen the synthesis simulation mismatch and the different reasons which lead to such mismatches.
 
 
 
