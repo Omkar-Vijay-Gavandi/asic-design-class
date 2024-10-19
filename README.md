@@ -1281,6 +1281,800 @@ The output of the above code is as follows:-
 
 
 
+<details>
+
+
+ <summary> Assignment 9 </summary>
+
+ # Introduction to Verilog RTL Design and Synthesis
+
+ ### Simulator
+
+ Tool used to check the RTL Design for gievn specifications. It is iverilog in my case.
+
+ ### Design
+
+ Verilog code or set of verilog code which includes functionality to meet with the required specifications.
+
+ ### Testbench
+
+ Setup to apply stimulus to the design to check the functionality.
+
+
+ # LAB 1 (Installation of the Repository)
+
+ ![image](https://github.com/user-attachments/assets/076b3284-b040-45c3-b92c-a7d32fbf4482)
+
+ The following picture shows us all the verilog codes and the corresponding testbench files present in the repository.
+
+ ![image](https://github.com/user-attachments/assets/b56df89b-e3a6-4db4-9cda-065a50ca7265)
+
+
+  # LAB 2(Simulation using Iverilog and Gtkwave)
+
+
+ ![image](https://github.com/user-attachments/assets/1a10b446-08a9-4644-80c6-41b7a29b1283)
+
+ ![image](https://github.com/user-attachments/assets/91577ff0-3fab-4452-9653-66f28dd9bb0f)
+
+The verilog code and its corresponding testbench as follows:-
+
+
+ ![image](https://github.com/user-attachments/assets/62da0621-9834-40b7-bfba-a73fa423926a)
+
+
+### Synthesizer
+
+It is the tool which is used to convert an RTL to a netlist. Yosys is the synthesizer which is used in my case.
+
+![image](https://github.com/user-attachments/assets/3d72d6bd-21e3-4a87-9fec-a847335a3dd3)
+
+Here the Netlist is the representation of the design in the form of the standard cells present in the .lib file.
+
+![image](https://github.com/user-attachments/assets/ae2b4e34-9ff6-4901-b341-16812657d2d9)
+
+### Verification of Synthesis
+
+![image](https://github.com/user-attachments/assets/b5bf62c3-28b5-44ea-90ae-11a7380a46f0)
+
+We use the same testbench which was used for RTL simulation earlier to find the output using gtkwave. We can do this only because the primary inputs fed into the design and that of the netlist will remain the same.
+
+## Logic Synthesis
+
+### RTL Design
+
+It is the behavioural representation of the required specification.
+
+![image](https://github.com/user-attachments/assets/92bb8277-b40f-4d38-a310-21c819304aa3)
+
+So now we have an RTL code but we need to map this code into a circuit which is where we use the process of synthesis. The RTL code is converted into the gates and connections are made between the gates and this is called as netlist.
+
+![image](https://github.com/user-attachments/assets/a60e9806-64f7-43ba-9e77-3bb86c3a22c3)
+
+
+### What is .lib?
+
+It is a collection of logical modules. It includes basic logic gates like AND,OR, NOT, etc, It contains the different flavours of the same input as in it will have different versions of the same gate. For example in the and gate it will contain a slow,medium and fast version of the AND gate.
+
+### Why do we need different versions of the same gate?
+
+The combinational delay in the circuit is responsible for the maximum speed of operaiton of the digital logic circuit. So we need cells that can work faster to make the combinational delay as small as possible. Thus in this case we need the combinational logic to be as fast as possible so that the required logic can be generated before the arrival of the next clock.
+
+![image](https://github.com/user-attachments/assets/87111b3f-a648-4be2-947f-d518d029b238)
+
+### So why do we need slow cells?
+
+We need slow cells to avoid the hold time violation. We need to capture the logic after the arrival of the clock. For this we need the logic to remain intact for a certain period of time. This is the hold time. If we use faster logic gates then it is possible that we might get a hold time violation.
+
+![image](https://github.com/user-attachments/assets/8ea42c58-5e37-4ffb-9ef3-25bfbb5fe181)
+
+## Faster vs Slower cells
+
+### Faster cells
+
+Advantages:- Less delay.
+Disadvatages:- More area and power.
+
+If the width of the transistors will be more it means that they will be able to source more current thereby reducing the delay.
+
+### Slower Cells
+
+Advantages:- Less area and power.
+Disadvantages:- More Delay.
+
+Based on the above information we need to use the cells which take care of the above points. So we need to guide the synthesizer through a constraints file.
+
+
+# Lab 3 ( Introduction to YOSYS)
+
+We have a design in the form of a verilog code which we need to convert into a netlist. For this purpose we are using the synthesizer called YOSYS. In this lab we use the YOSYS synthesizer which uses the components present in the .lib file to make the netlist.
+
+![image](https://github.com/user-attachments/assets/3f1c6dcd-3d17-4ac8-ae91-5d66b296c888)
+
+![image](https://github.com/user-attachments/assets/9f67c0f2-2a70-41c4-8c57-122639d399cf)
+
+![image](https://github.com/user-attachments/assets/bf1f58cc-7602-49b1-be59-eca0626d1366)
+
+![image](https://github.com/user-attachments/assets/eade5b92-1d90-455c-8ba3-a4dfb3e2522e)
+
+![image](https://github.com/user-attachments/assets/72a65504-1c94-4f44-98c9-7666f8f9311c)
+
+![image](https://github.com/user-attachments/assets/094c499d-97c7-4a7d-90cb-bd5f1d75d9b8)
+
+![image](https://github.com/user-attachments/assets/43b55831-c456-47b6-ab43-6810a654a0f4)
+
+![image](https://github.com/user-attachments/assets/f0c889a4-2052-471a-a8e6-be2a6a806c83)
+
+![image](https://github.com/user-attachments/assets/7f195185-4fdc-49dc-b47c-78be5200e003)
+
+We use the abc -liberty command to find the convert the RTL to the netlist.
+
+```bash
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+
+After running the above code we get the below output
+
+![image](https://github.com/user-attachments/assets/de274a9f-3028-4aa4-805b-7d1b98f835e7)
+
+![image](https://github.com/user-attachments/assets/f8452fec-653e-432c-b27d-8782759e18f6)
+
+The realised netlist is as follows:-
+
+We run the following command:-
+
+```bash
+show
+```
+
+![image](https://github.com/user-attachments/assets/4ffd5218-e34a-46e6-aac0-733a4c98474e)
+
+
+![image](https://github.com/user-attachments/assets/78e50e65-debc-46bb-a3d0-a0c7950f925b)
+
+We observe a 2:1 mux block in our circuit.
+
+Now we observe the netlist as shown below
+
+```bash
+write_verilog good_mux_netlist.v
+```
+
+![image](https://github.com/user-attachments/assets/abe85e16-dbb7-484c-9f9e-ab27f3873aab)
+
+![image](https://github.com/user-attachments/assets/0ca641af-0735-4d02-adc9-dd91f3e8e231)
+
+```bash
+write_verilog -noattr good_mux_netlist.v
+```
+
+![image](https://github.com/user-attachments/assets/f0e2b102-014b-43f6-bd27-1aa6dd2a2e95)
+
+
+![image](https://github.com/user-attachments/assets/e70c7f4d-e15b-4c2b-acec-dbaa3197eae7)
+
+
+# Lab 4 ( Introduction to Lab 4)
+
+The name of the library is sky130_fd_sc_hd__tt_025C_1v80.lib. Here sky130 is the name of the library where 130 is the technology node used. Here tt stands for typical. Libraries can be of different types including slow,fast and typical. The 025c is the temperature and v8 is the voltage. There are three parameters which determine the performance of the transistors namely :-
+- Process
+- Voltage
+- Temperature
+
+Process can be different for the same transistor and there can be imperfections in the device but we still want the device to function appropriately.
+Similarly irrespective of voltage and temperature variations we need our device to work properly.
+
+The .lib file is as follows. In this file we can observe the units of temperature. voltage, leakage power , current unit , resistance , capacitive load, etc.
+![image](https://github.com/user-attachments/assets/2cf8ec72-3cbd-4fac-903a-ac1b906b3228)
+
+We have already mentioned that the .lib file contains different cells and also different versions of the same cells as shown in the following figure.
+![image](https://github.com/user-attachments/assets/314ca855-5528-4067-b2d3-e4b987fb818f)
+
+We can also observe the power associated with different pins as shown in the below figure
+
+![image](https://github.com/user-attachments/assets/cd013cac-7e59-4050-9e4b-0209af855a53)
+
+Comparison of different gates:-
+
+Here we have found the leakage power for all the different cases of the and gate.
+
+and 2_0
+
+![image](https://github.com/user-attachments/assets/abde8d8c-992e-4c3f-abb6-c1c05a604425)
+
+and 2_2
+
+![image](https://github.com/user-attachments/assets/eb257612-cabe-491d-8fac-284d810f372b)
+
+and 2_4
+
+![image](https://github.com/user-attachments/assets/612bb14a-bbb5-436e-b98d-a177cc5c72cd)
+
+In this case the area is the largest and thus the power needed for getting the respective outputs is also the largest for this sizing.
+
+
+# Lab 5 ( Hier Synthesis Flat Synthesis)
+
+In this lab we will observe the synthesis of the file multiple_modules.v  . In this file we have invoked multiple modules and have interconnected the output of module 1 with that of the module 2 and have found the output.
+
+![image](https://github.com/user-attachments/assets/8dca6c61-aef1-430d-b1af-5424aee2b425)
+
+The following diagram shows us the number of different components used in implementing the above circuit.
+
+![image](https://github.com/user-attachments/assets/75e31a31-655a-4fdb-bc25-b5f7cd254fdb)
+
+![image](https://github.com/user-attachments/assets/45219c9a-6ee6-4279-9cfb-0fea6e6f3a93)
+
+We get the following netlist:-
+
+![image](https://github.com/user-attachments/assets/1a214d12-9b7b-4b38-bdb5-60d966b03ce4)
+
+![image](https://github.com/user-attachments/assets/2672adb7-a27d-4437-84ee-553691e62d58)
+
+![image](https://github.com/user-attachments/assets/74630c45-b97a-47e8-88f6-6ea4925960c5)
+
+From the above code we can see that we are getting an or gate in the output.
+
+We now move towards the flat synthesis. In the above code we can see that the hierarchy of the respective modules is preserved and we have seperate modules for the and and or gate but when we do the flatten synthesis we are instantiating all the gates inside one module. We can observe the difference as shown below.
+
+![image](https://github.com/user-attachments/assets/0d9f0cf4-3dff-4b74-848b-1b0df69e15ee)
+
+After doing the flat synthesis we get the following output:-
+
+![image](https://github.com/user-attachments/assets/d1cf2ae4-a18f-415e-80ff-2e7c9dd0c209)
+
+The difference between the earlier netlist and the flatten netlist is that in the previous case we could only see the blocks of u1 and u2 but here we can clearly observe the and and or gates in the netlist.
+
+We will now synthesize only the sub module 1. We do this in circuits where there are multiple instances of the same module so that we can directly invoke the same netlist into different parts of the circuit rather than synthesizing the entire design at once. If we synthesize the entire design at once we may not get the optimized output but when we use the divide and conquer method in a large circuit we synthseize individual blocks respectively and stitch the design fabric in the end to get optimized results. This way we get a much more optimized circuit.
+
+![image](https://github.com/user-attachments/assets/49ec3096-7f37-47ac-bf67-31fec38a213f)
+
+
+![image](https://github.com/user-attachments/assets/4ee44440-60c3-429a-90df-ba12fa159aba)
+
+We can observe that only 1 and gate is synthesized in this design
+
+![image](https://github.com/user-attachments/assets/bc3594f2-b18b-4363-8c6f-815d84a2c28b)
+
+
+
+![image](https://github.com/user-attachments/assets/96eb0154-7959-44cb-a993-23209e73ec46)
+
+
+# Why Flops are important in a circuit
+
+In a combinational circuit we implement a design but every gate in a circuit has its own propagation delay. Different gates have different delays in the circuit and due to these delays it is possible that momentarily we might get a different output than what is expected. This small change in actual output is what we call a glitch. As the size of the combinational circuit increases the glitches increase as the delays in the circuit will increase. Thus we put a flop at every stage in the circuit which feed the input into the combinational blocks only after being triggered by a clock in the design. Thus we eliminate the possibility of glitches in the output but it comes at a cost of large area due to addition of flops. We can also use the reset/set pins to set the initial values of the flops so that we do not feed in garbage values in the combinational circuit.
+
+
+
+# Coding styles for flops
+
+Note:- The below two codes are for aynchronous resets.
+
+![image](https://github.com/user-attachments/assets/bf35cb17-4fc5-4980-b613-becede867861)
+
+We can see that from the above code that the always block is triggered when either of the two conditions are met. If we see the positive edge aynchronous reset then we enter the block and change the output to 1'b0. In the other case we enter the block when we observe positive edge of the clock. When this condition is met the output of the clock is changed to the current input held by the flop. We are basically making a D Flip flop.
+
+
+
+Note:- The following are for synchronous reset
+
+![image](https://github.com/user-attachments/assets/6500242e-01cd-4bdc-8dba-f76b12aa60b2)
+
+The difference in the above code and the previous codes is that in this case the reset is triggered only when the positive edge of the clock is triggered and is thus synchronous.
+
+
+![image](https://github.com/user-attachments/assets/1a1fddb8-e4bb-4091-ba5a-0ad4464d793e)
+
+
+Similarly for the above code the we can see two conditions. The only difference is that we have given both the synchronous and the asynchronous reset.
+
+# LAB ( Synthesis Simulations)
+
+
+![image](https://github.com/user-attachments/assets/112247ff-1cb8-4cbd-9e7a-cf657c181094)
+
+
+## For Asynchronous reset
+
+![image](https://github.com/user-attachments/assets/b10e224c-e39a-4d57-a40f-1f0a3f00cf87)
+
+The output q corresponding to input d is observed immediately after the reset is changed without waiting for the next clock pulse
+
+![image](https://github.com/user-attachments/assets/dafa20af-e5de-4e76-a9ef-19e8aca3bb27)
+
+In the above figure we can observe that as soon as the asynchronous reset is triggered the output goes low without waiting for the clock edge.
+
+## For Asynchronous set
+
+![image](https://github.com/user-attachments/assets/a63e13ad-23a2-4b58-8513-e99b7b02c9c5)
+
+The output q corresponding to input d is observed immediately after the set is changed without waiting for the next clock pulse
+
+![image](https://github.com/user-attachments/assets/400a6cb7-ac7a-470b-873a-aa0910bc0479)
+
+
+In the above figure we can observe that as soon as the asynchronous set is triggered the output goes high without waiting for the clock edge.
+
+## For Synchronous reset
+
+![image](https://github.com/user-attachments/assets/022e6312-a8b8-4a74-bc24-2abd3d16e1af)
+
+We can see that the output q is observed only when the clock is triggered after the synchronous reset.
+
+![image](https://github.com/user-attachments/assets/f3af7fdf-ab46-4743-b135-e64d0fbda606)
+
+In the above figure we can observe that as soon as the asynchronous set is triggered the output goes high without waiting for the clock edge.
+
+
+## Synthesis of Aysnchronous circuit
+
+![image](https://github.com/user-attachments/assets/3f4f4c7b-e399-4c84-98d6-a56dfa9f7a8e)
+
+
+![image](https://github.com/user-attachments/assets/ed1d5295-936e-4fd5-9e54-b4a64873c205)
+
+![image](https://github.com/user-attachments/assets/6a971dc8-c10b-454d-9d96-f26bfea8573f)
+
+
+
+We get the following circuit upon execution
+
+![image](https://github.com/user-attachments/assets/4dd9d7eb-acd4-452d-a0f4-26c269d53d7b)
+
+The library is having an active low reset so we are getting an inverter before the flop.
+
+
+
+## Synthesis of Synchronous circuit
+
+### For synchronous reset
+
+![image](https://github.com/user-attachments/assets/b45b5df4-0c32-4ddc-8089-fa7815f55f95)
+
+
+![image](https://github.com/user-attachments/assets/39ba5fa6-761a-4a85-a5a4-9105b35de87d)
+
+
+
+![image](https://github.com/user-attachments/assets/1059a4d7-3745-425d-beec-8339c4f984c1)
+
+![image](https://github.com/user-attachments/assets/116bb768-593f-426b-b026-e773fa0a8440)
+
+Since we are having a synchronous active low reset we will have an inverter before the input.
+
+![image](https://github.com/user-attachments/assets/10b265ad-25d6-4667-92a5-b045eac00078)
+
+
+### For Synchronous set
+
+![image](https://github.com/user-attachments/assets/5940e7f6-b721-415e-8091-eff1639dd1ce)
+
+![image](https://github.com/user-attachments/assets/4623200a-4748-461b-941a-f0f7a66dd2f7)
+
+![image](https://github.com/user-attachments/assets/a2f61b68-8a29-4dd6-b704-46e009d1b24c)
+
+![image](https://github.com/user-attachments/assets/b58b8991-98cc-40f3-9bc9-a443e05dab62)
+
+
+![image](https://github.com/user-attachments/assets/dcb403c9-2d6a-4345-b65b-670e71f3ba31)
+
+
+In this case we do not have any set or reset pin
+
+
+# Optimizations
+
+### Multiplication with 2
+
+![image](https://github.com/user-attachments/assets/cd427486-a097-4fca-b041-de208eea37d4)
+
+We can observe that there is no mapping of standard cells.-
+
+
+If we multiply a binary number with 2 the corresponsding number is just the original number appended with a 0 at the end. Thus we do not need to add any cell in the citcuit.
+
+![image](https://github.com/user-attachments/assets/e402ff2d-1c80-46d5-84f0-b4097c060e4c)
+
+![image](https://github.com/user-attachments/assets/2eb2e4b7-97fa-43bc-9e12-efd698ee180d)
+
+We get the above netlist
+
+### Multiplication with 8
+
+![image](https://github.com/user-attachments/assets/6eb3cdb9-2928-468b-a4ae-b038b101ddf8)
+
+
+![image](https://github.com/user-attachments/assets/5b208c45-d6d5-4ef3-89d9-7f5eb4cb74e1)
+
+
+![image](https://github.com/user-attachments/assets/dd03f59c-c59b-49db-bdad-8a3f55be8023)
+
+
+![image](https://github.com/user-attachments/assets/14ea6e31-37cb-4939-ba69-ccd789654a82)
+
+If we multiply a number with 8 then we just have to concatenate the two numbers together and thus we do not require any standard cells in the circuit. Thus we get this optimized circuit.
+
+
+
+# Combinational Logic Optimization
+
+It is used to squeeze the logic to get the most optimized design. The most optimized design will be efficient in terms of area and power. The different techniques that are used are:-
+- Constant Propagation
+
+
+![image](https://github.com/user-attachments/assets/e861a35f-117d-4084-a092-cd7672094faa)
+
+From the above figure we can see that if the value of A or B = 0 then effectively the design is an inverter which will reduce the number of transistors used in the design and thus we will get less power and area constraints.
+
+
+- Boolean Logic Optimization
+
+
+![image](https://github.com/user-attachments/assets/4bf32b98-6882-4566-9614-509a79c15913)
+
+Here we can observe a chain of ternary operators. These conditions will be synthesized into a mux. We can thus evaluate the expression of output from these equations and thus reduce them further if possible in order to get an optimized solution.
+
+
+# Sequential Logic Optimization
+
+The techniques of sequential optimization are:-
+
+- Sequential constant propagation :- We replace the entire flop circuit with a simple logic 1 or 0. This is only possible when certain conditions are met in the circuit and based on them we can infer the logic coming at the output under all cases and so we can reduce the entire block with logic 1 or 0.
+- State Optimization:- Optimization of ununsed states.
+- Cloning:- used for physical aware synthesis. This is useful during floorplaaning of the blocks. Based on the timing and physical constraints on the board the logic is optimiezed.
+- Retiminig:- We redesign the circuit in such a way that the delays between different blocks of the circuit are adjusted such that we can operate at the maximum possible frequency.
+- Sequential Logic Cloning:-
+
+# LAB ( Combinational Logic Optimizations)
+
+- We are trying to synthesize the following code. This is an and gate after simplication of the ternary operator. We run the following instructions in yosys to get the netlist as shown.
+
+	![image](https://github.com/user-attachments/assets/b66f0643-9d32-405d-ae31-cf2e6262606c)
+    
+	![image](https://github.com/user-attachments/assets/23ebf842-25e2-4fe0-82ed-8b49daeee862)
+    
+	![image](https://github.com/user-attachments/assets/743a7f33-847c-46a3-bc52-d3e0ecb067f0)
+    
+	![image](https://github.com/user-attachments/assets/499bd057-65f1-46c4-a5da-500f3f7ffb19)
+    
+	We can see in the below image that only an and gate is synthesized as expected
+    
+	![image](https://github.com/user-attachments/assets/89fae131-aa3f-4ffa-a3b6-6a2e92449a99)
+    
+	The netlist is as follows:-
+    
+	![image](https://github.com/user-attachments/assets/f9476adb-a1d2-4087-9f7b-4469c3c673fa)
+
+
+
+- We are now trying to synthesize the following code. This is an or gate.  We run the following instructions in yosys to get the netlist as shown.
+
+  ![image](https://github.com/user-attachments/assets/fe726b64-7837-4a7d-9d5d-83727299b935)
+
+  ![image](https://github.com/user-attachments/assets/1306307d-f134-42eb-98ab-d7cb348f2481)
+
+  ![image](https://github.com/user-attachments/assets/689d1871-4aa4-4e2f-a625-a903b9cc068a)
+
+  We can see that an or gate is synthesized.
+
+  ![image](https://github.com/user-attachments/assets/cce1daf1-fa99-4058-b6d4-96ad9739920b)
+
+  The netlist is as follows:-
+
+  ![image](https://github.com/user-attachments/assets/3dd33ff7-c4aa-4373-bb5d-b25962787b86)
+
+
+- We are now trying to synthesize the following code. This is 3 input and gate.  We run the following instructions in yosys to get the netlist as shown.
+ 
+  ![image](https://github.com/user-attachments/assets/99e21361-c0d6-4d01-8e01-a05fc4f1bb24)
+
+  ![image](https://github.com/user-attachments/assets/8363c2c9-eb24-4566-b96a-57321ef9e4f2)
+
+  ![image](https://github.com/user-attachments/assets/2db4735f-9ba4-4fe9-a162-2ff90e935a61)
+
+  ![image](https://github.com/user-attachments/assets/a289d88d-bde0-4687-a199-205aedac4734)
+
+
+
+
+  The netlist is as follows:-
+
+  ![image](https://github.com/user-attachments/assets/886cb576-99e0-40ce-a080-f6f7075ed646)
+
+
+- We will now try to synthesize the following code for multiple modules opt
+
+  ![image](https://github.com/user-attachments/assets/33467529-6bf1-4bb3-a298-17bc97530f22)
+
+
+  ![image](https://github.com/user-attachments/assets/4beec00b-39dd-4db9-ba31-e9471ee582ae)
+
+  ![image](https://github.com/user-attachments/assets/2183c22a-3cfa-4205-ad6c-58c76c04511d)
+
+  ![image](https://github.com/user-attachments/assets/d42cbf80-8c11-4df5-a3bb-62de571d1fc8)
+
+  ![image](https://github.com/user-attachments/assets/70662b39-1d54-451e-b2ab-0bfcd54f8e63)
+
+  ![image](https://github.com/user-attachments/assets/4472db08-142b-438e-9575-6c067da49af6)
+
+  The netlist is as follows:-
+
+  ![image](https://github.com/user-attachments/assets/a183c9f4-f047-49aa-9a0f-731c406e91a9)
+
+ 
+- We will now try to synthesize the following code for multiple modules opt2
+
+  ![image](https://github.com/user-attachments/assets/f71f1c85-77e0-43d6-aba1-8825136bf501)
+
+ 
+  ![image](https://github.com/user-attachments/assets/0108b803-fea9-45eb-b5f2-fa322f3b8eea)
+
+  ![image](https://github.com/user-attachments/assets/2b7aa6c4-894a-44be-b3d1-412fead0e375)
+
+  ![image](https://github.com/user-attachments/assets/b759aeda-c015-4b1f-a056-9aeb39850b0c)
+
+  The netlist is as follows:-
+
+  ![image](https://github.com/user-attachments/assets/654b3c08-fa19-4c8d-9b61-13ac87921ff3)
+
+  # Sequential Logic Optimizations
+  We are trying to optimize the d Flip flop using reset and set.
+
+  The code is as follows:-
+
+  ![image](https://github.com/user-attachments/assets/b3d17b78-8a81-4d1d-97ab-b5b0b8621c86)
+
+ 
+  ## Simulated Output with reset
+ 
+  ![image](https://github.com/user-attachments/assets/ed2d2093-6cd9-4064-920a-050ccdb626c5)
+
+  In this case we can see that the output q is waiting for the edge of the clock to go to logic 1 after the change in reset.
+
+  ![image](https://github.com/user-attachments/assets/737bf5e5-dbe0-4aae-ad69-bd13bb78cc42)
+
+  We can see that a flop is inferred.
+
+
+  The netlist is as follows:-
+
+  ![image](https://github.com/user-attachments/assets/b5d9b3c6-0c21-4840-9377-af449f6d6a3b)
+
+
+  ## Simulated Output with set
+
+  ![image](https://github.com/user-attachments/assets/f0888439-80a8-414a-923e-d947c6a131e8)
+
+  In this case we can observe that the output is throughout 1 and thus the entire circuit and can be replaced by a logic 1.
+
+  ![image](https://github.com/user-attachments/assets/40e50463-aa6f-429d-904c-0f2957573ebd)
+
+  No flop is inferred as shown above
+
+
+  The netlist is as follows:-
+
+  ![image](https://github.com/user-attachments/assets/d96937ed-dc46-42eb-b093-68fd8e5c5b6d)
+
+
+  We can see that there is no requirement of any flop in this circuit so it is sequentially optimized.
+
+  ## Simulated output with both reset and set
+
+  Code:-
+
+  ![image](https://github.com/user-attachments/assets/7a95be47-7496-4fc0-a223-be35e5aedc83)
+
+  We can see that dffs are used in the layout:-
+
+  ![image](https://github.com/user-attachments/assets/521d4a35-7828-4f78-b42f-039641af93ff)
+
+  ![image](https://github.com/user-attachments/assets/100206eb-a451-4ac1-82d8-fc272684a7d4)
+
+
+
+  The netlist is as follows:-
+
+
+  ![image](https://github.com/user-attachments/assets/10fdf8c0-bacc-4738-995e-73cf870770b1)
+
+
+  # Unused Output Optimization
+
+  Code:-
+
+  ![image](https://github.com/user-attachments/assets/95ddc228-8d9c-4428-b418-417e2e00c933)
+
+  Here q is only sensing  the output q[0] and the rest bits are unused. So there is no need to map these 2 bits in the design. The bit q[0] toggles on every clock cycle. So we should get an inverter.
+
+  After synthesis we can see that there is only 1 dff in the synthesized logic
+
+  ![image](https://github.com/user-attachments/assets/0650828e-ec54-40cf-b5a2-c3eef8439d94)
+
+  The netlist is as follows:-
+
+ ![image](https://github.com/user-attachments/assets/f9482f2e-03db-4f14-907c-f0300513a275)
+
+
+ Code:-
+
+ ![image](https://github.com/user-attachments/assets/55b5bc9b-2491-473a-80b4-470cf7d78b96)
+
+
+ In this case all the bits in the output are sensed and corresponding to that we are going to generate a netlist.
+
+ ![image](https://github.com/user-attachments/assets/b7abf0e7-8939-4f70-a443-898a19e5edb3)
+
+ We can see that 3 dff are synthesized
+
+
+ The netlist is as follows:-
+
+ ![image](https://github.com/user-attachments/assets/fd517ec8-e0e5-4aaa-b628-bd7ef344f44f)
+
+
+ # Gate Level Simulation (GLS)
+
+ Here we run the testbench for the netlist. Netlist is logically same as the code so we verify it using the same testbench which we used for the RTL code. We need to do this step to ensure the logical correctness of the code and to ensure the timing of the design is met.
+
+ ![image](https://github.com/user-attachments/assets/ac2a341a-08c1-44f1-b211-7b71209d1363)
+
+ Here if the gate level models are timing aware then we can use it for timing simulation. We need to validate the functionality as there are synthesis simulation mismatches.
+
+ # Synthesis Simulation Mismatch
+
+ - Missing Sensitivity List
+   Simulator works based on activity. If there a change in the sensitivity then there is a change in output based on the conditions. If we miss some trigger conditions in the sensitivity list then the design will be wrong.
+ - BLocking vs Non-Blocking Assignments ( evaluated inside always block)
+
+   - Blocking statements ( = )
+ 	In this the statements are sequentially executed
+   - Non Blocking Statements ( <= )
+ 	In this the statements are parallely executed
+    
+	 
+ - Non standard coding
+
+# Caveats with Blocking Statements
+
+  Here if we interchange the order in which the statemnts are suppposed to be written inside the always block for a sequential circuit then the logic of the circuit can change.
+
+  ![image](https://github.com/user-attachments/assets/1a3ce698-1fda-4f75-bc4b-199912f22c13)
+
+  In the above code as we can see that we have used blocking statements inside the always block. Our aim is to have logic Y= (A+B)C. So we should or the logic a and b followed by and the resultant with c but since we have used the blocking statements and the order in which  we have written the code is wrong, incorrect logic will be synthesized.
+
+# LAB ( Synthesis Simulation Mismatch)
+
+Code:-
+
+![image](https://github.com/user-attachments/assets/7c6cd8d5-0ecd-4d6f-aeb8-7b252668a13d)
+
+
+Simulation Results:-
+
+![image](https://github.com/user-attachments/assets/4cca88cc-e39e-4cf4-a01f-a1c53b174e01)
+
+Synthesis:-
+
+![image](https://github.com/user-attachments/assets/25f5898b-7f48-4991-8624-f04dbb095e4a)
+
+![image](https://github.com/user-attachments/assets/e563fd2d-8d5f-4827-8f2f-a8bfd33bcf02)
+
+![image](https://github.com/user-attachments/assets/0e5afe75-fb67-4f70-95b9-192de5fa10c0)
+
+
+The netlist is as follows:-
+
+![image](https://github.com/user-attachments/assets/0244799b-6f1b-4b37-986c-d625d904b659)
+
+
+GLS simulation results
+
+![image](https://github.com/user-attachments/assets/63f1a5d6-ec0f-4271-87b3-6ded1e7db741)
+
+we observe the same results as seen earlier and it implies that there is no mismatch.
+
+
+Code:-
+
+![image](https://github.com/user-attachments/assets/2b768d5e-f86a-489b-87b5-72b1ca831a60)
+
+
+Simulion Results:-
+
+![image](https://github.com/user-attachments/assets/8584b899-b4e3-4e9e-ad12-4fa37cdac067)
+
+Synthesis:-
+
+![image](https://github.com/user-attachments/assets/c059fbb6-252c-469a-a59d-3997b660d51e)
+
+![image](https://github.com/user-attachments/assets/c77ac7d6-b9d6-40b2-b698-80992e91c1c3)
+
+![image](https://github.com/user-attachments/assets/72faf859-8a4f-44dd-ad89-671314ea68cf)
+
+
+
+The netlist is as follows:-
+
+![image](https://github.com/user-attachments/assets/a258cc50-f847-4c12-b954-e9e9869e1852)
+
+
+GLS Simulation:-
+
+![image](https://github.com/user-attachments/assets/e715d498-f693-48a4-b215-648d8c108e81)
+
+Here we can observe a difference in the output after GLS Simulation. The output y follows i0 and i1 based on the input of the select line whereas during RTL simulation it follows the select line but does not reflect the changes in the values of i0 nad i1 at all times and acts like a flip flop.
+
+
+
+## Mismatch Blocking Statement:-
+
+Aim :- Our aim is to synthesize the logic Y = ( A + B ) . C
+
+We want the or operation to take place followed by the and operation. Now we will simulate the code as given below.
+
+Code:-
+
+![image](https://github.com/user-attachments/assets/12bac8fe-4b58-4fe1-adaa-2d7aa4b4e7a1)
+
+
+Simulation Results:-
+
+![image](https://github.com/user-attachments/assets/20fddfcc-5727-430c-acca-bc8fd88963ef)
+
+The output at the marked point should have been 1 but is 0. This is because of the mismatch due to the blocking statements where the code is run sequentially in the always block. The value of d is calculated first in the first statement which is followed by the calculation of x. In case we want to make this work we should reverse the order of statements written in the always block. Here the past value of x is taken for the current calculation and thus we are getting this output. Also x is synthesized as a flop.
+
+Synthesis:-
+
+![image](https://github.com/user-attachments/assets/31c76c9e-25b8-4053-8bd2-ab826ec9c2c9)
+
+![image](https://github.com/user-attachments/assets/0abba558-381d-41cb-bc47-f0004583c915)
+
+![image](https://github.com/user-attachments/assets/d07d4291-8945-4f0d-979b-3bf58a58a3ed)
+
+
+
+
+The netlist is as follows:-
+
+![image](https://github.com/user-attachments/assets/7c090c40-9be7-4f2e-bcb9-b3439156d6e6)
+
+GLS Simulation:-
+
+![image](https://github.com/user-attachments/assets/3e701ac6-6233-445b-88f6-7473f828823e)
+
+If we observe the rtl simulation and compare it with the gls simulation results we can see that there is a mismatch between the outputs. This is due to the blocking statements used. The synthesized solution is looking at the present values of input and is calculating the output accordingly whereas in the rtl simulation the output is genrated based on the previous value of input. 
+
+# Conclusion:-
+
+
+
+
+
+
+
+    
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+</details>
+
 
 
 
