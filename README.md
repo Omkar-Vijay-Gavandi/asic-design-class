@@ -2100,7 +2100,57 @@ In the above course we have understood the conversion of the RTL Design to the g
 
 
 
- We now need to synthesize the RTL and find out the corresponding output
+ We now need to synthesize the RTL and find out the corresponding output. We expect to get the standard cells in gtkwave alongwith the analog output. We will use yosys to synthesize the output.
+
+ In order to synthesize the RTL we will use YOSYS.
+
+ ```bash
+
+ read_liberty <path>
+ read_verilog <path>
+ synth -top rvmyth
+ abc -liberty <path>
+ write_verilog rvmyth_net.v
+
+```
+
+ We then need to add this rvmyth_net.v file to the testbench file.
+
+ ![image](https://github.com/user-attachments/assets/60a84e9c-61d2-4948-bee9-879c923898bc)
+
+
+ The netlist generated after the write_verilog command is as follows:-
+ 
+ ![image](https://github.com/user-attachments/assets/ba832392-1565-408f-b16b-aa69701ad94a)
+
+
+ After doing the synthesis we get the following output and we run the following files using iverilog to get the output on gtkwave.
+
+ ![image](https://github.com/user-attachments/assets/d0fcec4b-4523-40b7-8b37-993a5a9bc4d8)
+
+ The output observed on gtkwave is as follows:-
+
+ ![image](https://github.com/user-attachments/assets/caa3d748-cd62-4b7d-ac05-a51f0dd5e878)
+
+ The standard cells are as follows:-
+
+ ![image](https://github.com/user-attachments/assets/8852c007-9068-4108-898e-adaeca3c2404)
+
+ ![image](https://github.com/user-attachments/assets/a777d606-2bb3-4968-8808-d5ca6fe0e6ca)
+
+ The output which we get after running the synthesized output is as follows:-
+
+ ![image](https://github.com/user-attachments/assets/00d5d733-411b-4f4e-9023-4bdc8fdddd52)
+
+ Conclusion:- From the above output we can observe a sawtooth waveform and thus we can say that the output O2 which we get from GLS is same as that of the functional simulation O1. Hence O1 = O2.
+
+
+
+
+
+
+
+ 
 
 </details>
 
