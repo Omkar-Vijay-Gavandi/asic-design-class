@@ -2132,6 +2132,9 @@ In the above course we have understood the conversion of the RTL Design to the g
  
  ![image](https://github.com/user-attachments/assets/ba832392-1565-408f-b16b-aa69701ad94a)
 
+ ![image](https://github.com/user-attachments/assets/488ae646-251b-4233-9001-faf22c6bd271)
+
+
 
  After doing the synthesis we get the following output and we run the following files using iverilog to get the output on gtkwave.
 
