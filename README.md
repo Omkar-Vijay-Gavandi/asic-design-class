@@ -2166,6 +2166,15 @@ In the above course we have understood the conversion of the RTL Design to the g
 
 </details>
 
+<details>
+
+ <summary> Assignment 11 </summary>
+
+ # Static Timing analysis
+
+ 
+</details>
+
 
 
 
