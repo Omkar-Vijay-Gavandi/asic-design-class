@@ -2309,6 +2309,65 @@ We vary the data arrival time or the data required time by 20% and find the corr
  ![image](https://github.com/user-attachments/assets/c52db9ae-fd14-4426-91e3-b8f1976bf179)
 
 
+ ### Clock Creation
+
+ ![image](https://github.com/user-attachments/assets/ab00d450-dd74-408c-81de-2e62d7242226)
+
+
+ # LAB
+
+ We will use the following commands to do the task
+
+ ```bash
+read_liberty lib/sta/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog src/module/RV_CPU_netlist.v
+link_design RV_CPU
+```
+
+The following commands are used to give the constraints according to the clock period given to me which is 9.5ns
+
+```bash
+create_clock -name clk -period 9.5 [get_ports clk]
+set_clock_uncertainty [expr 0.05 * 9.5] -setup [get_clocks clk]
+set_clock_uncertainty [expr 0.08 * 9.5] -hold [get_clocks clk]
+set_clock_transition [expr 0.05 * 9.5] [get_clocks clk]
+set_input_transition [expr 0.08 * 9.5] [all_inputs]
+```
+The below commands are used to generate the final report for the max and minimum path delay
+
+```bash
+report_checks -path_delay max
+report_checks -path_delay min
+```
+
+The execution of the above code was done as below
+
+![image](https://github.com/user-attachments/assets/334d1476-4b02-4af5-9c23-2dee989e80be)
+
+The report for the maximum path delay:-
+
+![image](https://github.com/user-attachments/assets/d644adfa-d6fb-4045-a877-47f2abebe5f9)
+
+The report for the minimum path delay:-
+
+![image](https://github.com/user-attachments/assets/21bda53b-baa9-448f-888d-ad33f5f32209)
+
+### Conclusion:-
+
+![image](https://github.com/user-attachments/assets/4a31c263-8506-485c-a9a0-1f40092620ce)
+
+
+In the above diagram we can observe a launch and a capture flip flop. There are multiple ways to reach the output node based on the input which is given to the launch flip flop. Based on this input the arrival time and the required time is calculated in the node analysis as already explained before. Based on these values the slack was calculated at every node. The above is a reg2reg path report where we have calculated the maximum and the minimum path delay around the netlist that was generated in the previous lab.
+
+
+
+
+
+ 
+
+
+
+
 
 
 
