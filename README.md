@@ -2172,7 +2172,177 @@ In the above course we have understood the conversion of the RTL Design to the g
 
  # Static Timing analysis
 
+ ### Checks
+
+ ![image](https://github.com/user-attachments/assets/0f083030-12b0-4776-a1ee-36269dc77889)
  
+ ![image](https://github.com/user-attachments/assets/025a8147-a586-45ea-98ef-e3c0e8f74942)
+
+ ![image](https://github.com/user-attachments/assets/eac8d012-efee-41dd-8e19-35d2dc14c7e9)
+
+ Here the yellow dots indicate the output ports/d pins
+
+
+ ### Slack
+
+ ![image](https://github.com/user-attachments/assets/31121173-5e5b-4bf7-b10f-6ec43c806a57)
+
+ Difference between the arrival time and the required time.
+
+ ![image](https://github.com/user-attachments/assets/e0a1c82c-725d-4843-8dd4-389c70055965)
+
+ ![image](https://github.com/user-attachments/assets/905286d3-0fe1-466c-97bc-2c1447da70fd)
+
+ ### Types of different checks
+
+ ![image](https://github.com/user-attachments/assets/4a31c263-8506-485c-a9a0-1f40092620ce)
+
+### Conversion of logic gates to nodes
+
+![image](https://github.com/user-attachments/assets/74204488-4995-42db-a5af-ee5c901527bc)
+
+### Actual arrival time calculation from the nodes
+
+Arrival time:- It is the time when the signal is expected to arrive.
+
+![image](https://github.com/user-attachments/assets/ffde5f4b-43b1-4144-a056-da568645fb92)
+
+### Required Arrival time calculation from the nodes
+
+It is the time when we expect the transition.
+
+![image](https://github.com/user-attachments/assets/5dab4690-0dd3-4de8-acc5-f0dda2fce500)
+
+This information is important when we there is a negative slack in the circuit and we need to find out which part of the circuit is contributing to the maximum negative slack so as to reduce it.
+
+![image](https://github.com/user-attachments/assets/55fd4212-3d36-480b-9943-f1e9ca7bb483)
+
+Assuming that the RAT is 7.55 at the output node we calculate RAT for each node as follows
+
+### Slack calculation:-
+
+![image](https://github.com/user-attachments/assets/428a10d7-ac24-4df4-8388-461049f42f5a)
+
+We can do 2 types of analysis path based and graph based. From the above example we come to know that it is more realistic to do path based analysis as we analysing the circuit based on the path which will be followed by the input to the output for a particular input.
+
+### Pin based analysis ( Pin to node conversion)
+
+![image](https://github.com/user-attachments/assets/3b814acc-9d2a-497f-a863-6ab053258e71)
+
+![image](https://github.com/user-attachments/assets/6ffed9de-888f-4e22-bcf4-63cef76f3b29)
+
+### Setup Analysis:-
+
+![image](https://github.com/user-attachments/assets/2b3fddd3-f85f-41f1-ad9c-a03e9a96b3b6)
+
+## Transistor Level Circuits:-
+
+### Negative and positive latch 
+
+![image](https://github.com/user-attachments/assets/42f7413f-6f64-4cd8-a6f3-ebfac57aabbb)
+
+![image](https://github.com/user-attachments/assets/ce57cb65-508c-4f1a-aacd-086ce61802cd)
+
+### Eye diagram for jitter analysis
+
+![image](https://github.com/user-attachments/assets/cce0ed89-7815-4de0-85e2-399412c4c520)
+
+![image](https://github.com/user-attachments/assets/0f6fcd04-daa2-4db0-9497-86acfd5fba90)
+
+Voltage and power supply variations lead to voltage droop and ground bounce as shown below
+
+![image](https://github.com/user-attachments/assets/c20bd205-990b-4f2c-bec1-7c97eae9f6d9)
+
+Final eye diagram
+
+![image](https://github.com/user-attachments/assets/7266a591-b470-47d4-9434-0f31cbd71e08)
+
+Jitter extraction in Setup timing analysis
+
+![image](https://github.com/user-attachments/assets/50466b88-badb-41a4-af0e-ea70fc5c149b)
+
+## Timing analysis:-
+
+### Setup time
+
+![image](https://github.com/user-attachments/assets/8c1c1bea-6410-4abb-8c11-61b5f088ac0f)
+
+### Hold time
+
+![image](https://github.com/user-attachments/assets/43b0e2af-bf54-45a2-ba88-984348f18f62)
+
+## On Chip Variation
+
+### Etching
+
+![image](https://github.com/user-attachments/assets/661970f4-9be4-44aa-a2bb-899c8b57b8bc)
+
+![image](https://github.com/user-attachments/assets/28a99393-d9e0-46e2-9e10-0fb51fb6afea)
+
+The inverters in the center are adjustcent to other inverters so the variations in etching are less compared to those that are etched on the outskirts which might be connected to some flops or any other block.
+
+### Relation between resistance , delay and drain current
+
+![image](https://github.com/user-attachments/assets/1f875062-8f07-41a6-82a9-70ee97ed9856)
+
+![image](https://github.com/user-attachments/assets/18be1724-216d-4eb3-9d59-99d4db1c3359)
+
+### OCV setup time analysis
+
+![image](https://github.com/user-attachments/assets/ed1055f2-6eef-43a1-ac0a-aa0d847e033f)
+
+We vary the data arrival time or the data required time by 20% and find the corresponding slack
+
+### Additional Pessimism
+
+![image](https://github.com/user-attachments/assets/13eb1bb6-aa74-4c10-8b71-6f028121d588)
+
+ Since the slack obatined in the previous case was negative we need to remove/add the pessimistic delay which we had considered in the common delay terms.
+
+
+ ### OCV hold time analysis
+
+ ![image](https://github.com/user-attachments/assets/f9ebb6d0-da0a-41f2-9d7b-f9441deb63ae)
+
+ Since we are getting a negative slack in the above calculation we will have to add the additional pessimism value to the arrival time or remove it from the required time. After this we observe the slack as follows:-
+
+ ![image](https://github.com/user-attachments/assets/c52db9ae-fd14-4426-91e3-b8f1976bf179)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </details>
 
 
