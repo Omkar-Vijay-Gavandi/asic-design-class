@@ -2316,6 +2316,8 @@ We vary the data arrival time or the data required time by 20% and find the corr
 
  # LAB
 
+ We are using the OpenSTA tool for this Lab.
+
  We will use the following commands to do the task
 
  ```bash
