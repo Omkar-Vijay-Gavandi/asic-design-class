@@ -2413,7 +2413,65 @@ In the above diagram we can observe a launch and a capture flip flop. There are 
 
  <summary> Assignment 12 </summary>
 
+ # PVT Corners in Semiconductor Devices
+
+PVT corners refer to specific combinations of Process, Voltage, and Temperature (PVT) conditions that affect the performance of semiconductor devices, particularly in digital circuits. Understanding these corners is essential for ensuring that designs meet performance, power, and reliability specifications across different operating environments. Here’s a breakdown of each component:
+
+## 1. Process (P)
+
+- **Variation in Fabrication**: Different batches of chips may exhibit variations due to inconsistencies in the manufacturing process, such as doping levels, oxide thickness, or lithography variations.
+
+### Types of Process Corners:
+- **Fast**: Transistors are faster than nominal due to better-than-expected manufacturing conditions.
+- **Slow**: Transistors are slower due to less favorable manufacturing conditions.
+
+## 2. Voltage (V)
+
+- **Supply Voltage Levels**: The operating voltage of the circuit can vary due to power supply fluctuations, droop, or variations in manufacturing.
+
+### Types of Voltage Corners:
+- **High Voltage (HV)**: The circuit operates at a voltage above the nominal level, which can lead to increased performance but may also cause higher power consumption.
+- **Low Voltage (LV)**: The circuit operates at a voltage below the nominal level, which can reduce performance and increase the likelihood of timing violations.
+
+## 3. Temperature (T)
+
+- **Operating Environment**: Temperature affects the electrical characteristics of semiconductor materials, including mobility and threshold voltage.
+
+### Types of Temperature Corners:
+- **High Temperature (HT)**: Increased temperature can cause transistors to slow down and can affect leakage currents.
+- **Low Temperature (LT)**: Lower temperatures can lead to improved performance but may also result in issues like increased threshold voltages.
+
+## Common PVT Corners
+
+Typically, PVT corners are analyzed in pairs, resulting in several combinations. The most common corners include:
+
+### 1. Slow/Slow (SS):
+- Slow process, low voltage, high temperature.
+- Typically the worst-case scenario for timing analysis, as it can lead to the slowest circuit performance.
+
+### 2. Fast/Fast (FF):
+- Fast process, high voltage, low temperature.
+- This represents the best-case scenario for timing analysis, where the circuit is expected to perform optimally.
+
+### 3. Fast/Slow (FS):
+- Fast process, low voltage, high temperature.
+- This corner can present challenges as the circuit may perform better than expected but could still have timing issues due to low voltage and high temperature.
+
+### 4. Slow/Fast (SF):
+- Slow process, high voltage, low temperature.
+- This corner can help identify cases where the circuit is under stress despite a higher supply voltage.
+
+## Importance of PVT Corners
+- **Timing Analysis**: PVT corners are critical for static timing analysis (STA) to ensure that the design meets timing requirements under worst-case conditions.
+- **Design Robustness**: Understanding these corners helps designers create robust designs that function correctly across a range of operating conditions, ensuring reliability in real-world applications.
+- **Power Consumption**: Different voltage and temperature conditions can impact power consumption, making it essential to analyze PVT corners during the design process.
+
+By considering PVT corners in the design and verification phases, engineers can improve the overall performance and reliability of their circuits, minimizing risks associated with real-world variations in manufacturing and operating conditions.
+
+# LAB
+
  The .sdc file is as follows:-
+ 
  ![image](https://github.com/user-attachments/assets/6b2f85f4-4e5a-4f03-9e1f-78d546bf3e41)
 
  The code for the same is as follows:-
@@ -2435,30 +2493,61 @@ set_input_transition [expr $PERIOD * 0.08] [get_ports VREFH]
 
 ```
 
+The tickle script is as follows:-
+
+``` bash
+
+```
+
+The above tickle script is executed using the following code:-
+
+```bash
+sta
+source sta_pvt.tcl
+```
+
 The table for the sdc file is as follows:-
 
 # Timing Analysis Table
 
 This table summarizes the TNS (Total Negative Slack), WNS (Worst Negative Slack), and Worst Slack values for different libraries.
 
-| Library                          | TNS         | WNS       | Worst Slack |
-|----------------------------------|-------------|-----------|-------------|
-| sky130_fd_sc_hd__ff_100C_1v65.lib | 0.0000      | 0.0000    | 2.0330      |
-| sky130_fd_sc_hd__ff_100C_1v95.lib | 0.0000      | 0.0000    | 3.5511      |
-| sky130_fd_sc_hd__ff_n40C_1v56.lib | 0.0000      | 0.0000    | 0.2433      |
-| sky130_fd_sc_hd__ff_n40C_1v65.lib | 0.0000      | 0.0000    | 1.3785      |
-| sky130_fd_sc_hd__ff_n40C_1v76.lib | 0.0000      | 0.0000    | 2.4022      |
-| sky130_fd_sc_hd__ff_n40C_1v95.lib | 0.0000      | 0.0000    | 3.5712      |
-| sky130_fd_sc_hd__ss_100C_1v40.lib | -3331.6890  | -19.1841  | -19.1841    |
-| sky130_fd_sc_hd__ss_100C_1v60.lib | -1365.2373  | -9.9309   | -9.9309     |
-| sky130_fd_sc_hd__ss_n40C_1v28.lib | -15108.4385 | -64.5234  | -64.5234    |
-| sky130_fd_sc_hd__ss_n40C_1v35.lib | -9089.3223  | -41.7204  | -41.7204    |
-| sky130_fd_sc_hd__ss_n40C_1v40.lib | -6469.6123  | -31.7278  | -31.7278    |
-| sky130_fd_sc_hd__ss_n40C_1v44.lib | -5002.2710  | -25.9241  | -25.9241    |
-| sky130_fd_sc_hd__ss_n40C_1v60.lib | -1882.5096  | -12.6494  | -12.6494    |
-| sky130_fd_sc_hd__ss_n40C_1v76.lib | -729.3387   | -6.3564   | -6.3564     |
-| sky130_fd_sc_hd__tt_025C_1v80.lib | -2.4261     | -0.0875   | -0.0875     |
-| sky130_fd_sc_hd__tt_100C_1v80.lib | 0.0000      | 0.0000    | 0.0678      |
+| Library                                 | TNS        | WNS        | Worst Setup Slack | Worst Hold Slack |
+|-----------------------------------------|------------|------------|-------------------|-------------------|
+| sky130_fd_sc_hd__ff_100C_1v65.lib      | 0          | 0          | 2.033             | -0.479            |
+| sky130_fd_sc_hd__ff_100C_1v95.lib      | 0          | 0          | 3.5511            | -0.5373           |
+| sky130_fd_sc_hd__ff_n40C_1v56.lib      | 0          | 0          | 0.2433            | -0.4192           |
+| sky130_fd_sc_hd__ff_n40C_1v65.lib      | 0          | 0          | 1.3785            | -0.459            |
+| sky130_fd_sc_hd__ff_n40C_1v76.lib      | 0          | 0          | 2.4022            | -0.4941           |
+| sky130_fd_sc_hd__ff_n40C_1v95.lib      | 0          | 0          | 3.5712            | -0.5364           |
+| sky130_fd_sc_hd__ss_100C_1v40.lib      | -3331.689  | -19.1841   | -19.1841          | 0.2487            |
+| sky130_fd_sc_hd__ss_100C_1v60.lib      | -1365.2373 | -9.9309    | -9.9309           | -0.0274           |
+| sky130_fd_sc_hd__ss_n40C_1v28.lib      | -15108.4385| -64.5234   | -64.5234          | 1.1491            |
+| sky130_fd_sc_hd__ss_n40C_1v35.lib      | -9089.3223 | -41.7204   | -41.7204          | 0.6834            |
+| sky130_fd_sc_hd__ss_n40C_1v40.lib      | -6469.6123 | -31.7278   | -31.7278          | 0.4606            |
+| sky130_fd_sc_hd__ss_n40C_1v44.lib      | -5002.271  | -25.9241   | -25.9241          | 0.3234            |
+| sky130_fd_sc_hd__ss_n40C_1v60.lib      | -1882.5096 | -12.6494   | -12.6494          | -0.0061           |
+| sky130_fd_sc_hd__ss_n40C_1v76.lib      | -729.3387  | -6.3564    | -6.3564           | -0.2197           |
+| sky130_fd_sc_hd__tt_025C_1v80.lib      | -2.4261    | -0.0875    | -0.0875           | -0.4167           |
+| sky130_fd_sc_hd__tt_100C_1v80.lib      | 0          | 0          | 0.0678            | -0.4184           |
+
+The timing analysis is as follows:-
+
+The graph for the Total negative slack for all the above mentioned lib files is as follows:-
+
+![image](https://github.com/user-attachments/assets/2a7d94da-f084-48eb-887b-2bfa39e1d411)
+
+The graph for the Worst negative slack for all the above mentioned lib files is as follows:-
+
+![image](https://github.com/user-attachments/assets/9e449b86-1faa-4f8c-a139-1caf9fd05f0e)
+
+The graph for the Worst Setup slack for all the above mentioned lib files is as follows:-
+
+![image](https://github.com/user-attachments/assets/0b7c32f0-9895-4ab0-b031-cfe819dd79fd)
+
+The graph for the Worst Hold slack for all the above mentioned lib files is as follows:-
+
+![image](https://github.com/user-attachments/assets/ec8ce2d2-62d3-4fe4-a589-0c56cb2f8ff6)
 
 
 
