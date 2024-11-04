@@ -2409,7 +2409,60 @@ In the above diagram we can observe a launch and a capture flip flop. There are 
 
 
 
+<details>
 
+ <summary> Assignment 12 </summary>
+
+ The .sdc file is as follows:-
+ ![image](https://github.com/user-attachments/assets/6b2f85f4-4e5a-4f03-9e1f-78d546bf3e41)
+
+ The code for the same is as follows:-
+
+ ``` bash
+set_units -time ns
+set PERIOD 9.5
+create_clock [get_pins {pll/CLK}] -name clk -period $PERIOD
+set_clock_uncertainty [expr 0.05 * $PERIOD] -setup [get_clocks clk]
+set_clock_uncertainty [expr 0.08 * $PERIOD] -hold [get_clocks clk]
+set_clock_transition [expr 0.05 * $PERIOD] [get_clocks clk]
+
+
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENB_CP]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENB_VCO]
+set_input_transition [expr $PERIOD * 0.08] [get_ports REF]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VCO_IN]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VREFH]
+
+```
+
+The table for the sdc file is as follows:-
+
+# Timing Analysis Table
+
+This table summarizes the TNS (Total Negative Slack), WNS (Worst Negative Slack), and Worst Slack values for different libraries.
+
+| Library                          | TNS         | WNS       | Worst Slack |
+|----------------------------------|-------------|-----------|-------------|
+| sky130_fd_sc_hd__ff_100C_1v65.lib | 0.0000      | 0.0000    | 2.0330      |
+| sky130_fd_sc_hd__ff_100C_1v95.lib | 0.0000      | 0.0000    | 3.5511      |
+| sky130_fd_sc_hd__ff_n40C_1v56.lib | 0.0000      | 0.0000    | 0.2433      |
+| sky130_fd_sc_hd__ff_n40C_1v65.lib | 0.0000      | 0.0000    | 1.3785      |
+| sky130_fd_sc_hd__ff_n40C_1v76.lib | 0.0000      | 0.0000    | 2.4022      |
+| sky130_fd_sc_hd__ff_n40C_1v95.lib | 0.0000      | 0.0000    | 3.5712      |
+| sky130_fd_sc_hd__ss_100C_1v40.lib | -3331.6890  | -19.1841  | -19.1841    |
+| sky130_fd_sc_hd__ss_100C_1v60.lib | -1365.2373  | -9.9309   | -9.9309     |
+| sky130_fd_sc_hd__ss_n40C_1v28.lib | -15108.4385 | -64.5234  | -64.5234    |
+| sky130_fd_sc_hd__ss_n40C_1v35.lib | -9089.3223  | -41.7204  | -41.7204    |
+| sky130_fd_sc_hd__ss_n40C_1v40.lib | -6469.6123  | -31.7278  | -31.7278    |
+| sky130_fd_sc_hd__ss_n40C_1v44.lib | -5002.2710  | -25.9241  | -25.9241    |
+| sky130_fd_sc_hd__ss_n40C_1v60.lib | -1882.5096  | -12.6494  | -12.6494    |
+| sky130_fd_sc_hd__ss_n40C_1v76.lib | -729.3387   | -6.3564   | -6.3564     |
+| sky130_fd_sc_hd__tt_025C_1v80.lib | -2.4261     | -0.0875   | -0.0875     |
+| sky130_fd_sc_hd__tt_100C_1v80.lib | 0.0000      | 0.0000    | 0.0678      |
+
+
+
+</details>
 
 
 
