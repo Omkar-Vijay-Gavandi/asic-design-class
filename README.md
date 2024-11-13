@@ -2809,6 +2809,79 @@ The **Flop Ratio** provides a measure of the balance between sequential and comb
 **Day2:**
 
 ## Good Floorpan vs Bad Floorplan and Introduction to Library Cell:
+
+
+### Utilisation factor and aspect ratio
+
+![image](https://github.com/user-attachments/assets/f84c8015-f922-43ed-822c-28f4904cbd75)
+
+Define the area of the netlist
+
+![image](https://github.com/user-attachments/assets/d1cf3165-75c2-4d79-b8aa-9936344b6396)
+
+The above picture demonstrates the calculation of the utilisation factor
+
+### Cooncept of pre-placed cells
+
+![image](https://github.com/user-attachments/assets/86be9e67-98e5-41bb-94f1-4a492541f526)
+
+We need to define the placement of some of the cells in the circuit. Some of them are mentioned above. These cells are defined only once but they can be invoked into the design multiple times. The arrangement of these cells needs to be done in the floorplanning part.
+
+![image](https://github.com/user-attachments/assets/de6b4796-5edc-466a-8ad7-9801588aee48)
+
+The above are the pre-placed cells and once placed they cannot be removed.
+
+### De-Coupling Capacitors
+
+![image](https://github.com/user-attachments/assets/27708263-eac3-413e-b096-d72f7b897c04)
+
+From the above figure we can see that there is a lot of distance between the source and the blocks where the design is implemented. The wire between VDD and the blocks also has some resistnace and thus there is a drop in voltage from VDD to a value less than VDD. If this value is less than the value of the noise margin then the output voltage may not be detected thus leading to the introduction of crosstalk.
+
+![image](https://github.com/user-attachments/assets/ae4c3372-97ab-4a1f-8353-42d87d9cebd0)
+
+So in order to solve this above problem we introduce a decoupling capacitor in the design which will feed the supply to the logic during every transition.
+
+![image](https://github.com/user-attachments/assets/4e1764bd-c766-49e4-80e7-ad6777125452)
+
+The placed cells look like the below diagram
+
+![image](https://github.com/user-attachments/assets/c1096618-360e-4be2-b956-d60a262a1cdd)
+
+### Power Planning
+
+![image](https://github.com/user-attachments/assets/b1a3315c-2451-4027-88b6-0506093d221e)
+
+In order for the driver to maintain the required voltage levels we need to make sure that the power supply is supplying the voltage VDD regularly.
+
+![image](https://github.com/user-attachments/assets/05dd703b-dd5e-4fa8-b0b8-6c7ffcf768fd)
+
+For the above 16 bit bus we can see that there is a ground bounce as all the logic 1 will try to discharge to 0 at the same time. Similar things are obseved in the other case wherein we observe a voltage droop.
+
+![image](https://github.com/user-attachments/assets/ad469a4a-5024-4343-a6ae-17c36c43b32d)
+
+In order to solve this problem we introduce seperate supply and ground lines in the circuit.
+
+![image](https://github.com/user-attachments/assets/090cc517-3287-43d3-88f8-744e860b6065)
+
+The floopplanning looks like this
+
+### Pin placement and logical cell placement blockage
+
+![image](https://github.com/user-attachments/assets/7dde7b11-bcfb-4efa-ad63-347f8809bc4d)
+
+From the above block we can understand that the reason behind the arrangement of the pins in the respective positions, i.e to decrease the amount of delay or power ,etc. We also add the logical cell placement blockage so that no other pins are mapped in the package.
+
+
+
+
+
+
+
+
+
+
+
+
 -----
 Tasks:
 
@@ -2820,8 +2893,6 @@ Tasks:
 	 Area of Die in microns = Die width in microns ∗ Die height in microns
 
 -----
-```
-
 # Change directory to the OpenLANE working directory
 cd ~/Desktop/work/tools/openlane_working_dir/openlane
 
@@ -2846,13 +2917,141 @@ run_synthesis
 # Now, initiate the floorplanning process
 run_floorplan
 
-```
 
 ![image](https://github.com/user-attachments/assets/9bd50e64-145a-46c6-9d97-a9ef1aec1a26)
 
 ![image](https://github.com/user-attachments/assets/78d2b5b5-ade6-499f-adf3-ac700e4d436c)
 
 ![image](https://github.com/user-attachments/assets/be99a56d-313e-43f4-b23c-bea525040fb5)
+
+
+According to floorplan def
+	1000   Unit Distance  = 1 micron
+	Die width in unit distance = 660685 − 0 = 660685
+	Die height in unit distance = 671405 − 0 = 671405
+	Distance in microns = Value in unit distance / 1000
+	Die width in microns = 660685/1000 = 660.685 microns
+	Die height in microns = 671405/1000 = 671.405 microns
+	Are os die in microns = 660.685 ∗ 671.405 = 443587.212425 square microns
+
+![image](https://github.com/user-attachments/assets/5e5dfb55-0542-405f-98a4-31d37d491cc5)
+
+3. Load generated floorplan def in magic tool and explore the floorplan.
+
+   Commands to load floorplan def in magic in another terminal
+
+bash
+# Change directory to path containing generated floorplan def
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/floorplan/
+
+# Command to load the floorplan def in magic tool
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
+
+
+The magic window opens as follows:-
+
+![image](https://github.com/user-attachments/assets/2a6acfd3-bfd9-4fcc-8acc-e75a49985f64)
+
+## Library Binding and Placement
+
+![image](https://github.com/user-attachments/assets/8b84780b-1f13-4d62-9aca-748d98709c44)
+
+The above netlist is represeneted in the form of blocks as shown below
+
+![image](https://github.com/user-attachments/assets/b3787bc9-0ac9-4133-884d-a7d8924247f0)
+
+The same cells can have different areas due to which the delays increase/decrease and thus we have different flavours of the same cells
+
+
+![image](https://github.com/user-attachments/assets/30c243f0-2f85-4224-a533-274c17458aa7)
+
+### Optimize placement using estimated wire-length and capacitance
+
+![image](https://github.com/user-attachments/assets/5c308552-6c09-49f1-a82f-f6382f96ac38)
+
+
+We can see that there is a lot of distance between some of the blocks because of which there can be some problems associated with delays,noise margin. In order to solve them we need to optimize the circuit. We add repeaters in the cirucit.
+
+
+![image](https://github.com/user-attachments/assets/32e8dbce-eeb8-4600-ab7e-f818649b5527)
+
+
+As we can see in the above case we are adding a buffer between Din2 and its corresponding logic in order to get the respective logic in the cicuit.
+
+The final floorplanned view looks like this
+
+
+![image](https://github.com/user-attachments/assets/81d7896a-b56b-46a8-9257-61c83135f839)
+
+### Need for libraries and characterization
+
+
+![image](https://github.com/user-attachments/assets/7fd96476-84d8-40a8-a540-8a73e44d57d9)
+
+In the above diagram we can the multiple stages involved in the implementation of a logic in the circuit. 
+
+
+![image](https://github.com/user-attachments/assets/10eaf417-dd48-4232-966a-a2bb660d45f0)
+
+### Congestion aware placement using Replace
+
+We run placement and get the following results using the commands specified
+
+bash
+# Change directory to path containing generated placement def
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/placement/
+
+# Command to load the placement def in magic tool
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+
+
+![image](https://github.com/user-attachments/assets/47e48b06-5044-4119-bf48-76f8bedc08c0)
+
+![image](https://github.com/user-attachments/assets/79c1ab35-a5f0-4d88-890f-21d0456da8c2)
+
+
+## Cell design and characterization flows
+
+The cell design flow involves all the below mentioned checks.
+
+![image](https://github.com/user-attachments/assets/73828dd2-43fb-4b97-9ef3-ea9f0a8475ae)
+
+## General timing characterization parameters
+
+### Timing threshold definitions
+
+The following timing characterisations are to be considered:-
+
+![image](https://github.com/user-attachments/assets/0a3be2dc-ca1c-43ab-8f65-056ec9c9d46c)
+
+
+![image](https://github.com/user-attachments/assets/ca3186a8-2091-47e9-be60-102901ecb3d2)
+
+
+![image](https://github.com/user-attachments/assets/a6b3301c-6e23-4861-bb2f-f1fe089dc6a3)
+
+### Propagation delay and transition time
+
+The threshold points should be specified correctly so as to not get a negative propagation delay as follows:-
+
+
+![image](https://github.com/user-attachments/assets/3d00c499-7a00-4ddd-b52c-beb05049e5f5)
+
+If the input slew is very high then we may also get a negative propagation delay
+
+
+![image](https://github.com/user-attachments/assets/3c3ca1dd-8dc5-436d-8a20-1b56e436568a)
+
+Considering all the above problems we have now defined the timing thresholds as follows:-
+
+
+![image](https://github.com/user-attachments/assets/95820043-8a21-47f4-8528-c5720a3efa98)
+
+
+
+
+
+
 
 
 
