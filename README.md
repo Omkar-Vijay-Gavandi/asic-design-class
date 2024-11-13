@@ -2596,7 +2596,57 @@ The graph for the Worst Hold slack for all the above mentioned lib files is as f
 </details>
 
 
+<details>	
+	<summary> Assignment 13  </summary>
+	
+# Advanced Physical Design using Openlane/Sky130
 
+## Sky130 Day 1:- Inception of OpenSource EDA, Openlane and Sky130 PDK
+
+### Introduction of QFN-48,Chips, Pads, core, die and IPs
+
+The following explains us a top down approach of understanding the components present in a board.
+
+There are many boards accessible to us in the market which we use for our applications. One of the most common board is the Arduino board.
+
+![image](https://github.com/user-attachments/assets/8ec34939-242f-4771-bc29-7635cc3d38de)
+
+We can observe the pins, package, different connectors, etc on the board through which we can connect the periphereal devices. The chip is the main component of the board and dive deep in its understanding.
+
+The block diagram of the package is as follows:-
+
+![image](https://github.com/user-attachments/assets/faaaee14-0ace-43af-876a-80282f1dba26)
+
+If we try to dive deep into the package we have the following:-
+
+![image](https://github.com/user-attachments/assets/ea822faf-7d36-41b9-9658-0356305d2968)
+
+The different regions inside of a cjip are as follows:-
+
+![image](https://github.com/user-attachments/assets/83294282-3621-4a0e-81b4-696a89766849)
+
+The different blocks inside of a chip are as follows:-
+
+![image](https://github.com/user-attachments/assets/3cb3da20-3183-41b3-9107-103f3fcddf24)
+
+### RISC V architecture
+
+![image](https://github.com/user-attachments/assets/c7360ae7-dd3f-44ee-8a80-822946cf828b)
+
+The above picture explains the flow of a c code inside of a processor. The following explains the flow:-
+
+The c code is first converted into RISC - V architecture. This is then converted into an RTL format using a verilog code wherein it can be mapped into gate level logic and thus the layout can be designed.
+
+
+
+
+
+
+ 
+
+
+
+</details>
 
 
 
