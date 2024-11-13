@@ -2756,6 +2756,103 @@ Once routing is complete, the layout undergoes multiple checks:
 </p>
 
 
+# Synthesizing the 'picorv32a' Design in OpenLANE
+
+This guide details the synthesis process for the `picorv32a` design in OpenLANE, focusing on calculating the **Flip-Flop (Flop) Ratio** and presenting key synthesis metrics.
+
+## Task 1: Synthesis
+
+1. **Run Synthesis for `picorv32a`:**  
+   - Start by synthesizing the `picorv32a` design using the **OpenLANE ASIC design flow**. This process converts the RTL description into a gate-level netlist based on the chosen standard cell library.
+   - After synthesis, review the outputs, which will include the generated **netlist** and key **synthesis reports**.
+
+   <div align="center">
+      <img src="https://github.com/user-attachments/assets/000f1b00-9e21-49a9-8d6d-850df8ba77af" alt="Synthesis Output" />
+   </div>
+
+## Task 2: Calculating the Flip-Flop (Flop) Ratio
+
+The **Flop Ratio** provides a measure of the balance between sequential and combinational logic in the design, impacting **area, power, and timing characteristics**.
+
+- **Formula for Flop Ratio:**
+
+   \[
+   \text{Flop Ratio} = \frac{\text{Number of D Flip-Flops}}{\text{Total Cell Count}}
+   \]
+
+   - **Percentage of Flop Ratio:**
+
+   \[
+   \text{Percentage of Flop Ratio} = \text{Flop Ratio} \times 100
+   \]
+
+### Synthesis Results for `picorv32a`
+
+- **Number of D Flip-Flops:** 1634
+- **Total Cell Count:** 14846
+- **Flop Ratio:** 0.11
+- **Percentage Flop Ratio:** 11.01%
+
+   <div align="center">
+      <img src="https://github.com/user-attachments/assets/d945921f-7f11-4106-b0e5-2de6c738f32f" alt="Flip Flop Ratio Calculation" />
+   </div>
+
+   <div align="center">
+      <img src="https://github.com/user-attachments/assets/72faa55d-d832-49f8-b142-c7d05152bc75" alt="Flop Ratio Result" />
+   </div>
+
+   <div align="center">
+      <img src="https://github.com/user-attachments/assets/b7ec39e4-8aff-4ea9-b4b9-685050fbddb0" alt="Percentage Flop Ratio Result" />
+   </div>
+
+
+**Day2:**
+
+## Good Floorpan vs Bad Floorplan and Introduction to Library Cell:
+-----
+Tasks:
+
+1. Run 'picorv32a' design floorplan using OpenLANE flow and generate necessary outputs.
+2. Calculate the die area in microns from the values in floorplan def.
+3. Load generated floorplan def in magic tool and explore the floorplan.
+4. Run 'picorv32a' design congestion aware placement using OpenLANE flow and generate necessary outputs.
+5. Load generated placement def in magic tool and explore the placement.
+	 Area of Die in microns = Die width in microns ∗ Die height in microns
+
+-----
+```
+
+# Change directory to the OpenLANE working directory
+cd ~/Desktop/work/tools/openlane_working_dir/openlane
+
+# (Optional) If the OpenLANE flow Docker container is not aliased, you can run this command to start the container
+# alias docker='docker run -it -v $(pwd):/openLANE_flow -v $PDK_ROOT:$PDK_ROOT -e PDK_ROOT=$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/openlane:v0.21'
+
+# Enter the OpenLANE Docker container to run the OpenLANE flow interactively
+docker
+
+# Once inside the OpenLANE flow Docker container, run the following to start OpenLANE in interactive mode
+./flow.tcl -interactive
+
+# Load the OpenLANE package (this is required for the flow to work properly)
+package require openlane 0.9
+
+# Prepare the 'picorv32a' design by creating the necessary files and directories
+prep -design picorv32a
+
+# After preparation, run the synthesis process to convert RTL to a gate-level netlist
+run_synthesis
+
+# Now, initiate the floorplanning process
+run_floorplan
+
+```
+
+
+
+
+
+
 
 
 
