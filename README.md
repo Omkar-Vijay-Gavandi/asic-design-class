@@ -3048,24 +3048,358 @@ Considering all the above problems we have now defined the timing thresholds as 
 ![image](https://github.com/user-attachments/assets/95820043-8a21-47f4-8528-c5720a3efa98)
 
 
+# Day 3 - Design library cell using Magic Layout and ngspice characterization
+
+### Theory
+
+### Implementation
+
+* Section 3 tasks:-
+1. Clone custom inverter standard cell design from github repository: [Standard cell design and characterization using OpenLANE flow](https://github.com/nickson-jose/vsdstdcelldesign).
+2. Load the custom inverter layout in magic and explore.
+3. Spice extraction of inverter in magic.
+4. Editing the spice model file for analysis through simulation.
+5. Post-layout ngspice simulations.
+6. Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
+
+#### 1. Clone custom inverter standard cell design from github repository
+
+```bash
+# Change directory to openlane
+cd Desktop/work/tools/openlane_working_dir/openlane
+
+# Clone the repository with custom inverter design
+git clone https://github.com/nickson-jose/vsdstdcelldesign
+
+# Change into repository directory
+cd vsdstdcelldesign
+
+# Copy magic tech file to the repo directory for easy access
+cp /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech .
+
+# Check contents whether everything is present
+ls
+
+# Command to open custom inverter layout in magic
+magic -T sky130A.tech sky130_inv.mag &
+```
+
+Screenshot of commands run
+
+![image](https://github.com/user-attachments/assets/5919b771-6225-4706-a6ec-94f339f71f13)
+
+#### 2. Load the custom inverter layout in magic and explore.
+
+Screenshot of custom inverter layout in magic
+
+![image](https://github.com/user-attachments/assets/2f8fe008-6187-4490-b6d7-b1b56ad0e678)
+
+Identifying NMOS and PMOS
+
+![image](https://github.com/user-attachments/assets/2341ce05-5718-4217-9c05-5fc10a58c2ad)
+
+![image](https://github.com/user-attachments/assets/814a0998-b039-43ff-969f-35b6304ff3d4)
+
+Output Y attached in the inverter
+
+![image](https://github.com/user-attachments/assets/50de1af8-f6c8-4029-8afb-978b44ad1a01)
+
+PMOS cell
+
+![image](https://github.com/user-attachments/assets/fcdf0c87-e9ad-4704-820e-77fb3856f098)
+
+NMOS cell
+
+![image](https://github.com/user-attachments/assets/7287e748-a415-4f74-a01b-9592873aa9b1)
+
+#### 3. Spice extraction of inverter in magic.
+
+Commands for spice extraction of the custom inverter layout to be used in tkcon window of magic
+
+```tcl
+# Check current directory
+pwd
+
+# Extraction command to extract to .ext format
+extract all
+
+# Before converting ext to spice this command enable the parasitic extraction also
+ext2spice cthresh 0 rthresh 0
+
+# Converting to ext to spice
+ext2spice
+```
+
+Screenshot of tkcon window after running above commands
+
+![image](https://github.com/user-attachments/assets/c488053c-95b2-443f-91a6-090d03766440)
+
+![image](https://github.com/user-attachments/assets/fe61fe8a-8bad-4cd4-952c-152ecec1f5b6)
+
+#### 4. Editing the spice model file for analysis through simulation.
+
+Measuring unit distance in layout grid
+
+![image](https://github.com/user-attachments/assets/0682d3e3-f44e-4b82-9db8-dd69de193545)
+
+Final edited spice file ready for ngspice simulation
+
+![image](https://github.com/user-attachments/assets/a00b1a14-2106-4f21-9e2c-e8d0f3201775)
+
+#### 5. Post-layout ngspice simulations.
+
+Commands for ngspice simulation
+
+```bash
+# Command to directly load spice file for simulation to ngspice
+ngspice sky130_inv.spice
+
+# Now that we have entered ngspice with the simulation spice file loaded we just have to load the plot
+plot y vs time a
+```
+Screenshots of ngspice run
+
+![image](https://github.com/user-attachments/assets/2b7be60b-e908-4312-a625-e99dfaf21481)
+
+Plots:-
+
+![image](https://github.com/user-attachments/assets/0567ecae-789d-4481-82bb-0042d49b7c64)
+
+
+Rise transition time calculation
+
+```math
+Rise\ transition\ time = Time\ taken\ for\ output\ to\ rise\ to\ 80\% - Time\ taken\ for\ output\ to\ rise\ to\ 20\%
+```
+```math
+20\%\ of\ output = 660\ mV
+```
+```math
+80\%\ of\ output = 2.64\ V
+```
+
+20% Screenshots
+
+![image](https://github.com/user-attachments/assets/6b5675ee-c9d0-4420-bb29-bb89c7e2bedc)
+
+![image](https://github.com/user-attachments/assets/1f8be12e-6fca-44a5-a89f-a04094dccdc9)
+
+
+80% Screenshots
+
+![image](https://github.com/user-attachments/assets/b7468d08-57e8-48e0-be81-f4827a9b687e)
+
+![image](https://github.com/user-attachments/assets/5b12cd30-45fe-475c-a908-4a9aa6a5608c)
+
+```math
+Rise\ transition\ time = 2.23624 - 2.19211 = 0.06396\ ns = 44.13\ ps
+```
+
+Fall transition time calculation
+
+```math
+Fall\ transition\ time = Time\ taken\ for\ output\ to\ fall\ to\ 20\% - Time\ taken\ for\ output\ to\ fall\ to\ 80\%
+```
+```math
+20\%\ of\ output = 660\ mV
+```
+```math
+80\%\ of\ output = 2.64\ V
+```
+
+20% Screenshots
+
+![image](https://github.com/user-attachments/assets/2a3378c4-3739-4928-bef0-ac2e94bd51b0)
+
+![image](https://github.com/user-attachments/assets/95e3d290-cd91-4d13-9d86-ec7de28fd89b)
 
 
 
+80% Screenshots
+
+![image](https://github.com/user-attachments/assets/5548200e-e0a5-4f64-9627-4d0caf4da432)
+
+![image](https://github.com/user-attachments/assets/6cf3ca0d-1f46-4619-9dd4-40d2a4964acd)
+
+
+```math
+Fall\ transition\ time = 4.09526 - 4.01962 = 0.07564\ ns = 75.64\ ps
+```
+
+Rise Cell Delay Calculation
+
+```math
+Rise\ Cell\ Delay = Time\ taken\ for\ output\ to\ rise\ to\ 50\% - Time\ taken\ for\ input\ to\ fall\ to\ 50\%
+```
+```math
+50\%\ of\ 3.3\ V = 1.65\ V
+```
+
+50% Screenshots
+
+![image](https://github.com/user-attachments/assets/bee7742e-82a0-46d1-ad8d-1a034c0aef1c)
 
 
 
+```math
+Rise\ Cell\ Delay = 2.13378 - 2.1274 = 0.06136\ ns = 6.38\ ps
+```
+
+Fall Cell Delay Calculation
+
+```math
+Fall\ Cell\ Delay = Time\ taken\ for\ output\ to\ fall\ to\ 50\% - Time\ taken\ for\ input\ to\ rise\ to\ 50\%
+```
+```math
+50\%\ of\ 3.3\ V = 1.65\ V
+```
+50% Screenshots
+
+![image](https://github.com/user-attachments/assets/465f7dc0-7248-4cf8-9472-c0323bc029ba)
+
+![image](https://github.com/user-attachments/assets/9fb8783e-ca4f-4985-b527-a7d05b4dbc96)
 
 
 
+```math
+Fall\ Cell\ Delay = 4.0779 - 4.05017 = 0.02\ ns = 27.73\ ps
+```
+
+#### 6. Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
+
+Link to Sky130 Periphery rules: [https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html](https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html)
+
+Commands to download and view the corrupted skywater process magic tech file and associated files to perform drc corrections
+
+```bash
+# Change to home directory
+cd
+
+# Command to download the lab files
+wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+
+# Since lab file is compressed command to extract it
+tar xfz drc_tests.tgz
+
+# Change directory into the lab folder
+cd drc_tests
+
+# List all files and directories present in the current directory
+ls -al
+
+# Command to view .magicrc file
+gvim .magicrc
+
+# Command to open magic tool in better graphics
+magic -d XR &
+```
+
+Screenshots of commands run
+
+![image](https://github.com/user-attachments/assets/05e1fb9c-bd59-49b2-8a17-0e60cf8e0f87)
+![image](https://github.com/user-attachments/assets/59ae0d71-4a7d-40f4-a358-7e7b609fcdd6)
 
 
+Screenshot of .magicrc file
+
+![image](https://github.com/user-attachments/assets/3e69a8c3-71b7-4756-b1c7-d5e4481a6334)
+
+**Incorrectly implemented poly.9 simple rule correction**
+
+Screenshot of poly rules
+
+![Screenshot from 2024-03-21 22-54-49](https://github.com/fayizferosh/soc-design-and-planning-nasscom-vsd/assets/63997454/9260cf37-5933-44a1-8362-597183644334)
+
+Incorrectly implemented poly.9 rule no drc violation even though spacing < 0.48u
+
+![image](https://github.com/user-attachments/assets/67cf6acf-1650-428f-860d-f90b66ada79d)
+
+![image](https://github.com/user-attachments/assets/ba0ac3cf-c9f3-4af9-b43d-e52cd6bc7c7c)
+
+New commands inserted in sky130A.tech file to update drc
+
+![image](https://github.com/user-attachments/assets/d0eaee4f-6783-4b51-a89a-5367bcedab5f)
+
+Commands to run in tkcon window
+
+```tcl
+# Loading updated tech file
+tech load sky130A.tech
+
+# Must re-run drc check to see updated drc errors
+drc check
+
+# Selecting region displaying the new errors and getting the error messages 
+drc why
+```
+
+Screenshot of magic window with rule implemented
+
+![image](https://github.com/user-attachments/assets/d62c2bcd-0f9f-407a-9fde-b565f718ddb2)
+![image](https://github.com/user-attachments/assets/1aef0897-1e68-4cf1-89cc-380206719ea2)
 
 
+Incorrectly implemented difftap.2 rule no drc violation even though spacing < 0.42u
+
+![Screenshot from 2024-03-22 00-14-36](https://github.com/fayizferosh/soc-design-and-planning-nasscom-vsd/assets/63997454/a2d0d739-2df5-4eb5-ab78-c80d366e24e4)
+
+New commands inserted in sky130A.tech file to update drc
+
+![image](https://github.com/user-attachments/assets/12a4c099-5915-46ad-926d-cfe293fe9b80)
+
+Commands to run in tkcon window
+
+```tcl
+# Loading updated tech file
+tech load sky130A.tech
+
+# Must re-run drc check to see updated drc errors
+drc check
+
+# Selecting region displaying the new errors and getting the error messages 
+drc why
+```
+
+Screenshot of magic window with rule implemented
+
+![image](https://github.com/user-attachments/assets/efa7d012-73cc-40ef-938e-bba7bf9db758)
 
 
+**Incorrectly implemented nwell.4 complex rule correction**
+
+Screenshot of nwell rules
+
+![Screenshot from 2024-03-22 00-51-34](https://github.com/fayizferosh/soc-design-and-planning-nasscom-vsd/assets/63997454/4ad4901d-0b9a-4339-89e3-7bb3fce2766d)
+
+Incorrectly implemented nwell.4 rule no drc violation even though no tap present in nwell
+
+![image](https://github.com/user-attachments/assets/cd3eaaea-a443-4821-8db0-26a25ae139b7)
+
+New commands inserted in sky130A.tech file to update drc
+
+![image](https://github.com/user-attachments/assets/1467039b-3d91-4094-b962-165f93025ae8)
+![image](https://github.com/user-attachments/assets/61515107-4a54-432c-80e1-ff06a5b6d015)
+
+Commands to run in tkcon window
+
+```tcl
+# Loading updated tech file
+tech load sky130A.tech
+
+# Change drc style to drc full
+drc style drc(full)
+
+# Must re-run drc check to see updated drc errors
+drc check
+
+# Selecting region displaying the new errors and getting the error messages 
+drc why
+```
+Screenshot of magic window with rule implemented
+
+![image](https://github.com/user-attachments/assets/54bf9b5c-bf53-40ad-9d0e-64a109295b7f)
 
 
- 
 
 
 
