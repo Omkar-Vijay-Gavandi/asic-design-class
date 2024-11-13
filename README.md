@@ -2599,43 +2599,162 @@ The graph for the Worst Hold slack for all the above mentioned lib files is as f
 <details>	
 	<summary> Assignment 13  </summary>
 	
-# Advanced Physical Design using Openlane/Sky130
+# Advanced Physical Design Using OpenLane/Sky130 Workshop
 
-## Sky130 Day 1:- Inception of OpenSource EDA, Openlane and Sky130 PDK
+## Overview
 
-### Introduction of QFN-48,Chips, Pads, core, die and IPs
+### Package
+In embedded boards, the "chip" we see is actually the **package**, which serves as a protective layer for the actual manufactured chip located at its center. Connections from the package to the chip are made via **wire bonding**, a basic wired connection method.
 
-The following explains us a top down approach of understanding the components present in a board.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/190b4c19-7a10-4526-a449-c61955ef81e9" width="400" />
+  <img src="https://github.com/user-attachments/assets/140d21ef-072e-44ba-9412-fe6485b6e3cf" width="400" />
+  <img src="https://github.com/user-attachments/assets/8f941ff2-8377-44df-9c29-829f2d656ccd" width="400" />
+</p>
 
-There are many boards accessible to us in the market which we use for our applications. One of the most common board is the Arduino board.
+### Chip
+Inside the chip, signals from external sources are routed through **pads**. The area bound by these pads is the **core**, where all digital logic resides. Together, the core and pads form the **die**, which is the primary manufacturing unit in semiconductor production.
 
-![image](https://github.com/user-attachments/assets/8ec34939-242f-4771-bc29-7635cc3d38de)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/07531d75-0042-4124-8e5d-e6a1315bdfa1" width="500" />
+</p>
 
-We can observe the pins, package, different connectors, etc on the board through which we can connect the periphereal devices. The chip is the main component of the board and dive deep in its understanding.
+### Foundry
+A **foundry** manufactures semiconductor chips, and **Foundry IPs** are intellectual properties specific to each foundry, often requiring high-level expertise. Reusable logic blocks are known as **macros**.
 
-The block diagram of the package is as follows:-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b9fd0168-4a71-4e9a-9152-f7bd8a3f9cb6" width="500" />
+</p>
 
-![image](https://github.com/user-attachments/assets/faaaee14-0ace-43af-876a-80282f1dba26)
+## Instruction Set Architecture (ISA)
 
-If we try to dive deep into the package we have the following:-
+For a program written in C to run on hardware, a specific flow is followed:
+1. The C program is first compiled into **assembly language** (e.g., **RISC-V ISA**).
+2. This assembly code is converted into **machine language**, which is then read by the computer hardware.
+3. The machine language is implemented using an **RTL** (Hardware Description Language).
+4. Finally, the design progresses through a standard **RTL to GDSII flow**.
 
-![image](https://github.com/user-attachments/assets/ea822faf-7d36-41b9-9658-0356305d2968)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f9f9c0ce-b464-4efc-92f2-3b40a0bff34a" width="500" />
+</p>
 
-The different regions inside of a cjip are as follows:-
+### System Software Layers
+For applications to run on hardware, **system software layers** (such as OS, compiler, and assembler) convert high-level code into binary language.
 
-![image](https://github.com/user-attachments/assets/83294282-3621-4a0e-81b4-696a89766849)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e7d4317a-5dcc-48bf-b20d-d48465951c12" width="500" />
+</p>
 
-The different blocks inside of a chip are as follows:-
+### Example Flow: Stopwatch App on RISC-V Core
+For instance, in a stopwatch app:
+- The OS layer might output a C function, which the compiler then converts into RISC-V instructions.
+- The assembler then translates these instructions into machine language, which the chip layout understands.
 
-![image](https://github.com/user-attachments/assets/3cb3da20-3183-41b3-9107-103f3fcddf24)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f56f5088-e623-4030-be95-0dd48c28f275" width="400" />
+  <img src="https://github.com/user-attachments/assets/b3b41fed-fb8c-43eb-af67-3f845f0e1f2d" width="400" />
+</p>
 
-### RISC V architecture
+### RTL to Physical Design
 
-![image](https://github.com/user-attachments/assets/c7360ae7-dd3f-44ee-8a80-822946cf828b)
+After the assembler generates machine language, RTL (in HDL) implements specific instructions, synthesizing them into a **netlist** of gates for chip fabrication.
 
-The above picture explains the flow of a c code inside of a processor. The following explains the flow:-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b330eb3e-1e89-4da3-bcaa-e95fe6b118e3" width="500" />
+</p>
 
-The c code is first converted into RISC - V architecture. This is then converted into an RTL format using a verilog code wherein it can be mapped into gate level logic and thus the layout can be designed.
+---
+
+## Open-Source Implementation of ASIC Design
+
+**Open-source ASIC Design** requires:
+- **RTL Designs**
+- **EDA Tools**
+- **PDK Data**
+
+#### Evolution of ASIC Design
+In 1979, **Lynn Conway** and **Carver Mead** proposed decoupling IC design from fabrication, leading to the concept of **Fabless Companies**. This shift allowed designers and pure-play fabs to work independently, interfacing through **Process Design Kits (PDKs)**, which contain data models, technology information, and design rules.
+
+**Open-source PDK**: Google and Skywater opened up the Skywater 130nm PDK in June 2020, marking a milestone in public accessibility for ASIC design.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e9fa7771-ef5d-4755-9f3f-18856e722039" width="500" />
+</p>
+
+## OpenLane: An Open-source ASIC Design Flow
+
+The **OpenLane ASIC Design Flow** aims to transform the design from **RTL** (Register Transfer Level) to **GDSII**, the final layout format for fabrication.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/288edd23-d1e7-49a7-9dc6-7a93fc019575" width="500" />
+</p>
+
+### Key Stages in ASIC Flow
+
+#### Synthesis
+The RTL is synthesized into a circuit using **Standard Cell Libraries (SCL)**, resulting in a **Gate-Level Netlist** that is functionally equivalent to the RTL.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6102211f-3af2-491a-a368-3919bb8e45a2" width="500" />
+</p>
+
+#### Standard Cell Libraries
+Standard cells, as fundamental building blocks, have regular layouts and various views (e.g., GDSII, Liberty, SPICE/CDL).
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1fcaa7bf-b7c6-4fc4-a7cd-5747a6045682" width="500" />
+</p>
+
+#### Floor Planning
+Defines the chip's overall structure and includes **core and I/O placement**.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ddb33f57-72b5-4dac-a9bf-fde5782b6bae" width="400" />
+  <img src="https://github.com/user-attachments/assets/ab93e598-e4b4-4b61-adee-80f51fb9c4c4" width="400" />
+</p>
+
+#### Power Planning
+Typically uses upper metal layers for **power distribution** due to their lower resistance, helping to minimize **IR drops**.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/be885ab5-06ca-47f9-ac4c-f2625b63453e" width="500" />
+</p>
+
+#### Placement
+- **Global Placement**: Provides approximate cell locations based on connectivity.
+- **Detailed Placement**: Adjusts positions to ensure legal, non-overlapping cell locations.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4e0c6519-c1a8-4be3-bfe5-9c2b8a70e139" width="500" />
+  <img src="https://github.com/user-attachments/assets/01915ce1-6694-4eee-8df3-2b37039b7809" width="500" />
+</p>
+
+#### Clock Tree Synthesis
+Addresses **clock skew** to ensure synchronous operation across all components.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/060cf6a0-1ef9-4a31-abc2-799487dd8d06" width="500" />
+</p>
+
+#### Routing
+OpenLane uses **6 routing layers** in Skywater PDK, with the lowest being Titanium Nitride and the remaining five being aluminum.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2c6125b9-91ff-4aa0-8fa6-c52605fa0ca1" width="500" />
+  <img src="https://github.com/user-attachments/assets/459f1066-49d8-41b6-97a0-c133c943fb8d" width="500" />
+</p>
+
+### Final Layout & Sign-Off Checks
+
+Once routing is complete, the layout undergoes multiple checks:
+- **DRC (Design Rule Checking)** ensures layout adherence to fabrication rules.
+- **LVS (Layout vs. Schematic)** verifies the final layout's functionality against the original netlist.
+- **STA (Static Timing Analysis)** confirms the design meets its timing requirements.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8ab63b14-c047-488f-adb9-e401c4ce72cc" width="500" />
+</p>
+
 
 
 
