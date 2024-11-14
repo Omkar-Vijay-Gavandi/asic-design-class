@@ -3152,7 +3152,7 @@ Commands for ngspice simulation
 
 ```bash
 # Command to directly load spice file for simulation to ngspice
-ngspice sky130_inv.spice
+ngspice omk_inv.spice
 
 # Now that we have entered ngspice with the simulation spice file loaded we just have to load the plot
 plot y vs time a
