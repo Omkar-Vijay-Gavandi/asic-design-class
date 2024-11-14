@@ -3744,6 +3744,8 @@ expand
 
 Abutment of power pins with other cell from library clearly visible
 
+![image](https://github.com/user-attachments/assets/594048b2-bc8c-48ba-ac0d-59ca4d64437e)
+
 </details>
 
 
