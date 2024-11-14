@@ -3196,7 +3196,7 @@ math
 Rise transition time = 2.23624 - 2.19211 = 0.06396 ns = 44.13 ps
 
 
-Fall transition time calculation
+## Fall transition time calculation
 
 math
 Fall transition time = Time taken for output to fall to 20% - Time taken for output to fall to 80%
@@ -3227,7 +3227,7 @@ math
 Fall transition time = 4.09526 - 4.01962 = 0.07564 ns = 75.64 ps
 
 
-Rise Cell Delay Calculation
+## Rise Cell Delay Calculation
 
 math
 Rise Cell Delay = Time taken for output to rise to 50% - Time taken for input to fall to 50%
@@ -3246,7 +3246,7 @@ math
 Rise Cell Delay = 2.13378 - 2.1274 = 0.06136 ns = 6.38 ps
 
 
-Fall Cell Delay Calculation
+## Fall Cell Delay Calculation
 
 math
 Fall Cell Delay = Time taken for output to fall to 50% - Time taken for input to rise to 50%
