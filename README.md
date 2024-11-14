@@ -3170,13 +3170,13 @@ Plots:-
 ## Rise Transition Time Calculation
 
 math
-Rise\ transition\ time = Time\ taken\ for\ output\ to\ rise\ to\ 80\% - Time\ taken\ for\ output\ to\ rise\ to\ 20\%
+Rise transition time = Time taken for output to rise to 80% - Time taken for output to rise to 20%
 
 math
-20\%\ of\ output = 660\ mV
+20% of output = 660 mV
 
 math
-80\%\ of\ output = 2.64\ V
+80% of output = 2.64 V
 
 
 20% Screenshots
@@ -3193,19 +3193,19 @@ math
 ![image](https://github.com/user-attachments/assets/5b12cd30-45fe-475c-a908-4a9aa6a5608c)
 
 math
-Rise\ transition\ time = 2.23624 - 2.19211 = 0.06396\ ns = 44.13\ ps
+Rise transition time = 2.23624 - 2.19211 = 0.06396 ns = 44.13 ps
 
 
 Fall transition time calculation
 
 math
-Fall\ transition\ time = Time\ taken\ for\ output\ to\ fall\ to\ 20\% - Time\ taken\ for\ output\ to\ fall\ to\ 80\%
+Fall transition time = Time taken for output to fall to 20% - Time taken for output to fall to 80%
 
 math
-20\%\ of\ output = 660\ mV
+20% of output = 660 mV
 
 math
-80\%\ of\ output = 2.64\ V
+80% of output = 2.64 V
 
 
 20% Screenshots
@@ -3224,16 +3224,16 @@ math
 
 
 math
-Fall\ transition\ time = 4.09526 - 4.01962 = 0.07564\ ns = 75.64\ ps
+Fall transition time = 4.09526 - 4.01962 = 0.07564 ns = 75.64 ps
 
 
 Rise Cell Delay Calculation
 
 math
-Rise\ Cell\ Delay = Time\ taken\ for\ output\ to\ rise\ to\ 50\% - Time\ taken\ for\ input\ to\ fall\ to\ 50\%
+Rise Cell Delay = Time taken for output to rise to 50% - Time taken for input to fall to 50%
 
 math
-50\%\ of\ 3.3\ V = 1.65\ V
+50% of 3.3 V = 1.65 V
 
 
 50% Screenshots
@@ -3243,16 +3243,16 @@ math
 
 
 math
-Rise\ Cell\ Delay = 2.13378 - 2.1274 = 0.06136\ ns = 6.38\ ps
+Rise Cell Delay = 2.13378 - 2.1274 = 0.06136 ns = 6.38 ps
 
 
 Fall Cell Delay Calculation
 
 math
-Fall\ Cell\ Delay = Time\ taken\ for\ output\ to\ fall\ to\ 50\% - Time\ taken\ for\ input\ to\ rise\ to\ 50\%
+Fall Cell Delay = Time taken for output to fall to 50% - Time taken for input to rise to 50%
 
 math
-50\%\ of\ 3.3\ V = 1.65\ V
+50% of 3.3 V = 1.65 V
 
 50% Screenshots
 
@@ -3263,7 +3263,7 @@ math
 
 
 math
-Fall\ Cell\ Delay = 4.0779 - 4.05017 = 0.02\ ns = 27.73\ p
+Fall Cell Delay = 4.0779 - 4.05017 = 0.02 ns = 27.73 p
 
 #### 6. Find problem in the DRC section of the old magic tech file for the skywater process and fix them.
 
