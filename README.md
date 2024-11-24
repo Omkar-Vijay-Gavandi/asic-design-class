@@ -1,4 +1,4 @@
-# ASIC DESIGN CLASS
+![image](https://github.com/user-attachments/assets/2f41574a-0e90-48cf-9d01-2c6228501d67)# ASIC DESIGN CLASS
 
 ### Tools used
 - **Software Tools:**
@@ -4379,6 +4379,38 @@ Screenshots of commands run and timing report generated
 
 </details>
 
+<details>
+	<summary> Assignment 14</summary>
 
+ # Tool Installation
+
+ The commands for tool installation are as follows:-
+
+ ``` bash
+git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
+cd OpenROAD-flow-scripts
+sudo ./setup.sh
+```
+
+![Screenshot from 2024-11-22 21-15-53](https://github.com/user-attachments/assets/acc4a27e-c72a-44ab-9a48-2254bffbe029)
+
+![Screenshot from 2024-11-22 21-21-19](https://github.com/user-attachments/assets/35e4911b-000e-489c-85f5-0998acebbcfb)
+
+```bash
+sudo ./etc/DependencyInstaller.sh 
+```
+
+![image](https://github.com/user-attachments/assets/0f2723b3-4446-4e07-9372-c4766542cb7f)
+
+
+```bash
+./build_openroad.sh --local
+```
+
+![Screenshot from 2024-11-22 21-27-41](https://github.com/user-attachments/assets/f4d38cc2-5269-4ea1-812b-7946f1fded00)
+
+
+
+</details>
 
 
