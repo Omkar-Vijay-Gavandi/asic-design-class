@@ -4807,6 +4807,107 @@ tensorboard --logdir=../logs/sky130hd/gcd/teset-tune-2024-25-09-11-31-33/
 
 The green path obtained indicates the most optimum configuration for our design.
 
+# Execution with VSDBabysoc
 
+## Synthesis
+
+We first have to copy the folders and the files in the respective locations as mentioned in the below config.mk file
+
+I have created a vsdbabysoc folder in the src and the platforms directory. After this I have added the gds, include ,lef and lib folder in the above two folders.
+
+
+The following command was used to run synthesis:-
+
+```bash
+
+```
+
+```bash
+export DESIGN_NICKNAME = vsdbabysoc
+export DESIGN_NAME = vsdbabysoc
+export PLATFORM    = sky130hd
+
+export VERILOG_FILES = $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/vsdbabysoc.v \
+		       $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/rvmyth.v \
+		       $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/clk_gate.v
+		     
+export ADDITIONAL_LIBS = $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/lib/avsddac.lib \
+		         $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/lib/avsdpll.lib
+
+export VERILOG_INCLUDE_DIRS = $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/include
+
+export SDC_FILE      =   $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/vsdbabysoc_synthesis.sdc
+
+export ADDITIONAL_LEFS = $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/lef/avsddac.lef \
+ 			 $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/lef/avsdpll.lef
+
+
+export ADDITIONAL_GDS = $(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/gds/avsddac.gds \
+			$(DESIGN_HOME)/src/$(DESIGN_NICKNAME)/gds/avsdpll.gds
+
+#export PDN_TCL = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/pdn.tcl
+
+export DIE_AREA   = 0 0 1600 1600
+export CORE_AREA  = 20 20 1590 1590
+
+export PLACE_PINS_ARGS = -exclude left:0-600 -exclude left:1000-1600: -exclude right:* -exclude top:* -exclude bottom:*
+export MACRO_PLACEMENT = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/macro_placement.cfg
+
+export TNS_END_PERCENT = 100
+
+export REMOVE_ABC_BUFFERS = 1
+```
+
+The following commands were executed on terminal
+
+![image](https://github.com/user-attachments/assets/fe585fdf-35a4-473f-be19-4d7f5d8355a1)
+
+
+## Floorplanning
+
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk floorplan
+```
+![image](https://github.com/user-attachments/assets/0517889a-3708-415c-9aa5-d0c45b105995)
+
+
+In order to see the GUI we run the following command
+
+```bash
+make gui_floorplan
+```
+
+![image](https://github.com/user-attachments/assets/3ddb9ad3-9ee4-4161-bc7d-c9fa32092161)
+
+We get the following layout
+
+![image](https://github.com/user-attachments/assets/9060109e-aabc-4d01-8326-c33d3e4967d4)
+
+![image](https://github.com/user-attachments/assets/36fcf6ed-07b2-4769-979e-56e94966b413)
+
+![image](https://github.com/user-attachments/assets/669c9eea-a139-49a7-9361-3a79e45a43bd)
+
+
+## CTS
+
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk cts
+```
+
+![image](https://github.com/user-attachments/assets/05219c63-5982-420c-923a-b2133273a99d)
+
+![image](https://github.com/user-attachments/assets/919d59fe-d0ff-4652-92e3-5120e4dda6b1)
+
+![image](https://github.com/user-attachments/assets/75f03593-4453-481a-aaa2-b4b15381be60)
+
+![image](https://github.com/user-attachments/assets/7e498980-37cb-4b96-8de8-aeaef9fded10)
+
+## Routing
+
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk route
+```
+
+![image](https://github.com/user-attachments/assets/546332ef-c385-4c45-a845-b334d97a2b48)
 
 
