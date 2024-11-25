@@ -4879,6 +4879,18 @@ make gui_floorplan
 
 ![image](https://github.com/user-attachments/assets/3ddb9ad3-9ee4-4161-bc7d-c9fa32092161)
 
+### Heatmaps
+
+![image](https://github.com/user-attachments/assets/53698a1e-603c-4216-9eae-e5f564010e40)
+
+![image](https://github.com/user-attachments/assets/23f09f61-7353-4a75-88b8-33d45a320069)
+
+![image](https://github.com/user-attachments/assets/c9f5ba2e-1bb4-4dc5-8380-789cd9d754ae)
+
+![image](https://github.com/user-attachments/assets/4fc3c335-71b7-4b3d-842e-3a8b37d321d7)
+
+![image](https://github.com/user-attachments/assets/77a9b1d1-ddde-4471-bbc0-bf33b81ca2bc)
+
 
 ### Floorplanning report
 
