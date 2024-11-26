@@ -5468,6 +5468,23 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk cts
 
 ![image](https://github.com/user-attachments/assets/7e498980-37cb-4b96-8de8-aeaef9fded10)
 
+### Heatmaps:-
+
+Placement density
+![image](https://github.com/user-attachments/assets/74fa3141-7e1b-4cdc-a976-b1ede124ba14)
+
+Power Density
+![image](https://github.com/user-attachments/assets/5c80f708-5cdd-4169-8fcc-744a852f78d4)
+
+Routing congesiton
+![image](https://github.com/user-attachments/assets/201ae4be-b90d-4088-82c2-312fd985cec5)
+
+Estimated Congestion
+![image](https://github.com/user-attachments/assets/6bb3c1f7-fbaf-4609-9dd9-939943ce4fdf)
+
+IR Drop
+![image](https://github.com/user-attachments/assets/9f17ebc9-0aa0-4b57-a685-f9c62bc52310)
+
 
 ### CTS report
 
